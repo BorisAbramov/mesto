@@ -1,0 +1,9 @@
+.list__like{
+    margin-right: 0;
+    margin-left: auto;
+    width: 22px;
+    height: 19px;
+}
+.list__like:hover{
+    cursor: pointer;
+}

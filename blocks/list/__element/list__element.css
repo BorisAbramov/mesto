@@ -1,0 +1,8 @@
+.list__element{
+    max-width: 282px;
+}
+@media screen and (max-width: 600px){
+    .list__element{
+        margin-bottom: 20px;
+    }
+  }

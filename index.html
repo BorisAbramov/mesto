@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="html, css">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+</head>
+<body class="body">
+  <div class="page">
+    <header class="header">
+      <img src="./images/header-logo.svg" alt="Логотип" class="header__logo">
+      <hr class="header__line">
+    </header>
+    <section class="profile">
+      <div class="avatar__ellipse">
+        <img src="./images/profile.jpg" alt="Фото Кусто" class="avatar__image">
+      </div>
+      <div class="profile-info">
+        <h1 class="profile-info__name" id="name">Жак-Ив Кусто</h1>
+        <div class="profile-info__edit"></div>
+        <p class="profile-info__text" id="job">Исследователь океана</p>
+        
+      </div>
+      <button type="button" class="profile__add"><img src="./images/plus.svg" alt="Добавить" class="profile__add-plus"></button>
+    
+    </section>
+    <section class="elements">
+      <ul class="list">
+        <li class="list__element">
+          <div class="list__item">
+            <img src="./images/worther-see-min.JPG" class="list__image">
+            <div class="list__group">
+              <p class="list__name">Озеро Вёртер</p>
+              <img src="./images/like.svg" alt="Поставить Лайк" class="list__like">
+            </div>
+          </div>
+        </li>
+        <li class="list__element">
+          <div class="list__item">
+            <img src="./images/Elbrus.jpg" class="list__image">
+            <div class="list__group">
+              <p class="list__name">Гора Эльбрус</p> 
+              <img src="./images/like.svg" alt="Поставить Лайк" class="list__like">
+            </div>
+          </div>
+        </li>
+        <li class="list__element">
+          <div class="list__item">
+            <img src="./images/lake-alps-min.JPG" class="list__image">
+            <div class="list__group">
+              <p class="list__name">Озеро в Альпах</p> 
+              <img src="./images/like.svg" alt="Поставить Лайк" class="list__like">
+            </div>
+          </div>
+        </li>
+        <li class="list__element">
+          <div class="list__item">
+            <img src="./images/stelvio-min.JPG" class="list__image">
+            <div class="list__group">
+              <p class="list__name">Стельвио</p>
+              <img src="./images/like.svg" alt="Поставить Лайк" class="list__like">
+            </div>
+          </div>
+        </li>
+        <li class="list__element">
+          <div class="list__item">
+            <img src="./images/krumlov-min.JPG" class="list__image">
+            <div class="list__group">
+              <p class="list__name">Чески Крумлов</p>
+              <img src="./images/like.svg" alt="Поставить Лайк" class="list__like">
+            </div>
+          </div>
+        </li>
+        <li class="list__element">
+          <div class="list__item">
+            <img src="./images/karachaevo.jpg" class="list__image">
+            <div class="list__group">
+              <p class="list__name">Карачаево-Черкесия</p>
+              <img src="./images/like.svg" alt="Поставить Лайк" class="list__like">
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <footer class="footer">
+      <p class="footer__text">© 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+      <div class="popup__overlay"></div>
+      <div class="popup__content">
+        <div class="popup__close">+</div>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form name="form" class="popup__form">
+          <input type="text" id="InputName" class="popup__input">
+          <hr class="popup__line">
+          <input type="text" id="InputJob" class="popup__input">
+          <hr class="popup__line">
+          <button type="submit" class="popup__submit"><span class="popup__text">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <script src="./scripts/index.js"></script>
+  </body>
+</html>
+
+
