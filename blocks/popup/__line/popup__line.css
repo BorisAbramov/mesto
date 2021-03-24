@@ -4,3 +4,8 @@
     border: 1px solid #000000;
     margin-top: 13px;
 }
+@media screen and (max-width: 600px){
+    .popup__line{
+        width: 238px;
+    }
+  }
