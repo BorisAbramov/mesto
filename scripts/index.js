@@ -46,7 +46,6 @@ function Save(){
 ShowEditProfile.addEventListener('click', Edit);
 
 popupClose.addEventListener('click', ClosePopup);
-popupOverlay.addEventListener('click', ClosePopup);
 
 /*
 popupSubmit.addEventListener('click', Save);
