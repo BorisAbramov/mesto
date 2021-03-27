@@ -15,38 +15,37 @@ let formElement = document.querySelector('popup__form');
 
 function ShowPopup(){
     popup.classList.add('popup_is-opened');
-    inputName.value = profileName.textContent;
-    inputJob.value = profileJob.textContent;
 }
 
 function ClosePopup(){
     popup.classList.remove('popup_is-opened');
 }
-/*
+
 function EditPopup(){
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
 }
-
+function Edit(){
+    ShowPopup();
+    EditPopup()
+}
+/*
 function SavePopup(evt){
     evt.preventDefault(); 
     inputName.textContent = profileName.value;
     inputJob.textContent = profileJob.value;
 }
 
-function Edit(){
-    ShowPopup();
-    EditPopup()
-}
+
 
 function Save(){
     SavePopup();
     ClosePopup();
 }
 */
-/*
+
 ShowEditProfile.addEventListener('click', Edit);
-*/
+
 
 
 
@@ -58,9 +57,9 @@ function formSubmitHandler (evt) {
 }
 
 formElement.addEventListener('submit', formSubmitHandler); 
-
+/*
 ShowEditProfile.addEventListener('click', ShowPopup);
-    
+ */   
 
 popupClose.addEventListener('click', ClosePopup);
 
