@@ -3,7 +3,8 @@
     margin-left: auto;
     width: 22px;
     height: 19px;
+    cursor: pointer;
 }
 .list__like:hover{
-    cursor: pointer;
+    opacity: .6;
 }

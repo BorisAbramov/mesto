@@ -1,67 +1,38 @@
-let ShowEditProfile = document.querySelector('.profile-info__edit');
+let showEditProfile = document.querySelector('.profile-info__edit');
 let popup = document.querySelector('.popup');
 
 let popupClose = document.querySelector('.popup__close');
 
-let popupSubmit = document.querySelector('popup__submit');
+let profileName = document.getElementById('name'); //берем имя из профиля страницы
+let profileJob = document.getElementById('job'); //берем профессию из профиля страницы
 
-let profileName = document.getElementById('name');
-let profileJob = document.getElementById('job');
+let inputName = document.getElementById('InputName'); //берем имя из инпут-формы
+let inputJob = document.getElementById('InputJob'); //берем профессию из инпут-формы
 
-let inputName = document.getElementById('InputName');
-let inputJob = document.getElementById('InputJob');
+let formElement = document.querySelector('.popup__form');
 
-let formElement = document.querySelector('popup__form');
-
-function ShowPopup(){
+function showPopup(){
     popup.classList.add('popup_is-opened');
-}
-
-function ClosePopup(){
-    popup.classList.remove('popup_is-opened');
-}
-
-function EditPopup(){
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
 }
-function Edit(){
-    ShowPopup();
-    EditPopup()
+function closePopup(){
+    popup.classList.remove('popup_is-opened');
 }
-/*
-function SavePopup(evt){
-    evt.preventDefault(); 
-    inputName.textContent = profileName.value;
-    inputJob.textContent = profileJob.value;
-}
-
-
-
-function Save(){
-    SavePopup();
-    ClosePopup();
-}
-*/
-
-ShowEditProfile.addEventListener('click', Edit);
-
-
-
-
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
     profileName.textContent = inputName.value;
     profileJob.textContent = inputJob.value;
-    ClosePopup();
+    closePopup();
 }
 
-formElement.addEventListener('submit', formSubmitHandler); 
-/*
-ShowEditProfile.addEventListener('click', ShowPopup);
- */   
+showEditProfile.addEventListener('click', showPopup);
 
-popupClose.addEventListener('click', ClosePopup);
+popupClose.addEventListener('click', closePopup);
+
+formElement.addEventListener('submit', formSubmitHandler); 
+
+
 
 
 
