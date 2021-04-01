@@ -6,6 +6,11 @@
     padding: 0;
     background-color: black;
     border-radius: 2px;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
 }
 .popup__submit:hover{
     opacity: 0.8;
@@ -15,5 +20,7 @@
     .popup__submit{
         width: 238px;
         height: 46px;
+        font-size: 14px;
+        line-height: 17px;
     }
   }
