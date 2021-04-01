@@ -2,7 +2,6 @@
     min-width: 320px;
     margin: 0 auto;
     padding: 0;
-    padding-top: 45px;
     font-family: 'Inter', Arial, sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -12,12 +11,7 @@
     text-rendering: optimizeLegibility;
 }
 /*
-div, header, footer, section, h2, h3, p, .content{
+div, header, main, footer, section, h2, h3, p, .content{
     border: 1px solid red;
   }
 */
-@media screen and (max-width: 600px){
-  .page{
-    padding-top: 28px;
-  }
-}
