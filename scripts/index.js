@@ -6,8 +6,8 @@ let popupClose = document.querySelector('.popup__close');
 let profileName = document.getElementById('name'); //берем имя из профиля страницы
 let profileJob = document.getElementById('job'); //берем профессию из профиля страницы
 
-let inputName = document.getElementById('InputName'); //берем имя из инпут-формы
-let inputJob = document.getElementById('InputJob'); //берем профессию из инпут-формы
+let inputName = document.getElementById('inputName'); //берем имя из инпут-формы
+let inputJob = document.getElementById('inputJob'); //берем профессию из инпут-формы
 
 let formElement = document.querySelector('.popup__form');
 
