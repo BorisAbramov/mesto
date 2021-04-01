@@ -18,7 +18,6 @@
 @import url(../blocks/list/list.css);
 @import url(../blocks/list/__group/list__group.css);
 @import url(../blocks/list/__element/list__element.css);
-@import url(../blocks/list/__item/list__item.css);
 @import url(../blocks/list/__image/list__image.css);
 @import url(../blocks/list/__name/list__name.css);
 @import url(../blocks/list/__like/list__like.css);
