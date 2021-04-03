@@ -3,6 +3,7 @@
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
+    max-width: 336px;
     margin: 0;
     padding: 0;
     text-overflow: ellipsis;
@@ -13,5 +14,6 @@
     .profile-info__text{
         font-size: 14px;
         line-height: 17px;
+        max-width: 282px;
     }
   }
