@@ -11,6 +11,13 @@ let inputJob = document.getElementById('inputJob'); //берем професс�
 
 let formElement = document.querySelector('.popup__form');
 
+//popup добавления фоток
+let popupAdd = document.querySelector('.popup-add');
+let formElementAdd = document.querySelector('.popup-add__form');
+let showImageAdd = document.querySelector('.profile__add');
+let popupCloseAdd = document.querySelector('.popup-add__close');
+
+//popup функции
 function showPopup(){
     popup.classList.add('popup_is-opened');
     inputName.value = profileName.textContent;
@@ -25,6 +32,14 @@ function formSubmitHandler (evt) {
     profileJob.textContent = inputJob.value;
     closePopup();
 }
+//popup фотки функции
+function showPopupAdd(){
+    popupAdd.classList.add('popup-add_is-opened');
+}
+function closePopupAdd(){
+    popupAdd.classList.remove('popup-add_is-opened');
+}
+
 
 showEditProfile.addEventListener('click', showPopup);
 
@@ -32,7 +47,9 @@ popupClose.addEventListener('click', closePopup);
 
 formElement.addEventListener('submit', formSubmitHandler); 
 
+showImageAdd.addEventListener('click', showPopupAdd);
 
+popupCloseAdd.addEventListener('click', closePopupAdd);
 
 
 
