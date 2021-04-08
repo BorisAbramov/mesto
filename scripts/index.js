@@ -16,6 +16,32 @@ let popupAdd = document.querySelector('.popup-add');
 let formElementAdd = document.querySelector('.popup-add__form');
 let showImageAdd = document.querySelector('.profile__add');
 let popupCloseAdd = document.querySelector('.popup-add__close');
+const initialCards = [
+    {
+      name: 'Озеро Вёртер',
+      link: './images/worther-see-min.jpg'
+    },
+    {
+      name: 'Гора Эльбрус',
+      link: './images/Elbrus.jpg'
+    },
+    {
+      name: 'Озеро в Альпах',
+      link: './images/lake-alps-min.jpg'
+    },
+    {
+      name: 'Стельвио',
+      link: './images/stelvio-min.jpg'
+    },
+    {
+      name: 'Чески Крумлов',
+      link: './images/krumlov-min.jpg'
+    },
+    {
+      name: 'Карачаево-Черкесия',
+      link: './images/karachaevo.jpg'
+    }
+  ];
 
 //popup функции
 function showPopup(){
