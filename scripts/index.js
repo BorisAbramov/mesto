@@ -16,6 +16,7 @@ let popupAdd = document.querySelector('.popup-add');
 let formElementAdd = document.querySelector('.popup-add__form');
 let showImageAdd = document.querySelector('.profile__add');
 let popupCloseAdd = document.querySelector('.popup-add__close');
+const list = document.querySelector('.list');
 const initialCards = [
     {
       name: 'Озеро Вёртер',
@@ -65,6 +66,17 @@ function showPopupAdd(){
 function closePopupAdd(){
     popupAdd.classList.remove('popup-add_is-opened');
 }
+
+const card = initialCards.forEach(item => {
+  const listElementTemplate = document.querySelector('.list-element-template').content
+  const listItem = listElementTemplate.cloneNode(true)
+  const listItemTitle = listItem.querySelector('.list__name')
+  const listItemLink = listItem.querySelector('.list__image')
+  listItemTitle.textContent = item.name
+  listItemLink.src = item.link
+
+  list.append(listItem);
+})
 
 
 showEditProfile.addEventListener('click', showPopup);
