@@ -1,0 +1,19 @@
+.list__basket{
+    border: none;
+    box-sizing: border-box;
+    background: transparent;
+    background-image: url(../../../images/basket.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 18px;
+    height: 19px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 18px;
+    right: 15px;
+}
+.list__basket:hover{
+    opacity: 0.6;
+}

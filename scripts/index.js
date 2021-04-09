@@ -78,6 +78,7 @@ function insertCard(item){
   const listItemLink = listItem.querySelector('.list__image')
   listItemTitle.textContent = item.name
   listItemLink.src = item.link
+  listItemLink.alt = item.name
 
   list.append(listItem);
 }

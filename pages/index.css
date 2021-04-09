@@ -21,6 +21,7 @@
 @import url(../blocks/list/__name/list__name.css);
 @import url(../blocks/list/__like/list__like.css);
 @import url(../blocks/list/__like/_active/list__like_active.css);
+@import url(../blocks/list/__basket/list__basket.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
 @import url(../blocks/popup/popup.css);
