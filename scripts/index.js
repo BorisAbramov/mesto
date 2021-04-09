@@ -72,7 +72,7 @@ function closePopupAdd(){
     popupAdd.classList.remove('popup-add_is-opened');
 }
 
-function insertCard(item){
+function insertCard(item){ //пока для первоначальной загрузки
   const listItem = listElementTemplate.cloneNode(true)
   const listItemTitle = listItem.querySelector('.list__name')
   const listItemLink = listItem.querySelector('.list__image')
@@ -96,11 +96,12 @@ const formAddSubmitHandler = e => { //вставка новой карточки
   const listItemLink = listItem.querySelector('.list__image');
   listItemTitle.textContent = inputValueName;
   listItemLink.src = inputValueLink;
+  listItemLink.alt = inputValueName;
 
   list.prepend(listItem);
+
   closePopupAdd();
 }
-
 
 //слушатели
 showEditProfile.addEventListener('click', showPopup);
@@ -114,3 +115,5 @@ showImageAdd.addEventListener('click', showPopupAdd);
 popupCloseAdd.addEventListener('click', closePopupAdd);
 
 formAdd.addEventListener('submit', formAddSubmitHandler);
+
+like.addEventListener('click', likeActive);
