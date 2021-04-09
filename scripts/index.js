@@ -43,6 +43,11 @@ const initialCards = [
       link: './images/karachaevo.jpg'
     }
   ];
+const listElementTemplate = document.querySelector('.list-element-template').content 
+const formAdd = document.querySelector('.popup-add__form');
+const formAddItemInputName = document.getElementById('formAddInputName');
+const formAddItemInputLink = document.getElementById('formAddInputLink');
+const like = document.querySelector('.list__like');
 
 //popup функции
 function showPopup(){
@@ -67,8 +72,7 @@ function closePopupAdd(){
     popupAdd.classList.remove('popup-add_is-opened');
 }
 
-const card = initialCards.forEach(item => {
-  const listElementTemplate = document.querySelector('.list-element-template').content
+const card = initialCards.forEach(item => { //делаем первоначальную загрузку карточек на сайте
   const listItem = listElementTemplate.cloneNode(true)
   const listItemTitle = listItem.querySelector('.list__name')
   const listItemLink = listItem.querySelector('.list__image')
@@ -78,7 +82,19 @@ const card = initialCards.forEach(item => {
   list.append(listItem);
 })
 
+const formAddSubmitHandler = e => {
+  e.preventDefault();
+  const inputValueName = formAddItemInputName.value;
+  const inputValueLink = formAddItemInputLink.value;
+  const listItem = listElementTemplate.cloneNode(true);
+  listItemTitle.textContent = inputValueName;
+  listItemLink.src = inputValueLink;
 
+  list.append(listItem);
+}
+
+
+//слушатели
 showEditProfile.addEventListener('click', showPopup);
 
 popupClose.addEventListener('click', closePopup);
@@ -89,5 +105,5 @@ showImageAdd.addEventListener('click', showPopupAdd);
 
 popupCloseAdd.addEventListener('click', closePopupAdd);
 
-
+formAdd.addEventListener('submit', formAddSubmitHandler);
 
