@@ -72,7 +72,7 @@ function closePopupAdd(){
     popupAdd.classList.remove('popup-add_is-opened');
 }
 
-const card = initialCards.forEach(item => { //делаем первоначальную загрузку карточек на сайте
+function insertCard(item){
   const listItem = listElementTemplate.cloneNode(true)
   const listItemTitle = listItem.querySelector('.list__name')
   const listItemLink = listItem.querySelector('.list__image')
@@ -80,17 +80,24 @@ const card = initialCards.forEach(item => { //делаем первоначал�
   listItemLink.src = item.link
 
   list.append(listItem);
+}
+
+const card = initialCards.forEach(item => { //делаем первоначальную загрузку карточек на сайте
+  insertCard(item)
 })
 
-const formAddSubmitHandler = e => {
+const formAddSubmitHandler = e => { //вставка новой карточки
   e.preventDefault();
   const inputValueName = formAddItemInputName.value;
   const inputValueLink = formAddItemInputLink.value;
   const listItem = listElementTemplate.cloneNode(true);
+  const listItemTitle = listItem.querySelector('.list__name');
+  const listItemLink = listItem.querySelector('.list__image');
   listItemTitle.textContent = inputValueName;
   listItemLink.src = inputValueLink;
 
-  list.append(listItem);
+  list.prepend(listItem);
+  closePopupAdd();
 }
 
 
@@ -106,4 +113,3 @@ showImageAdd.addEventListener('click', showPopupAdd);
 popupCloseAdd.addEventListener('click', closePopupAdd);
 
 formAdd.addEventListener('submit', formAddSubmitHandler);
-
