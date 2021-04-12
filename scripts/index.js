@@ -71,7 +71,7 @@ function showPopupAdd(){
 function closePopupAdd(){
     popupAdd.classList.remove('popup-add_is-opened');
 }
-
+/*
 function insertCard(item){ //пока для первоначальной загрузки
   const listItem = listElementTemplate.cloneNode(true)
   const listItemTitle = listItem.querySelector('.list__name')
@@ -80,7 +80,7 @@ function insertCard(item){ //пока для первоначальной заг
   listItemLink.src = item.link
   listItemLink.alt = item.name
 
-  list.append(listItem);
+  list.prepend(listItem);
 }
 
 const card = initialCards.forEach(item => { //делаем первоначальную загрузку карточек на сайте
@@ -102,6 +102,52 @@ const formAddSubmitHandler = e => { //вставка новой карточки
 
   closePopupAdd();
 }
+*/
+
+const insertCardItem = (item) => {
+  const listItem = createCard(item)
+  const listItemLink = listItem.querySelector('.list__image')
+  const listItemTitle = listItem.querySelector('.list__image')
+  listItemLink.src = item.link
+  listItemTitle.textContent = item.name
+  listItemLink.alt = item.name
+  list.prepend(listItem)
+}
+
+function createCard(item) {
+  const listItem = listElementTemplate.cloneNode(true)
+  const cardDelete = listItem.querySelector('.list__basket')
+  cardDelete.addEventListener('click', () => listItem.remove())
+
+  const cardLike = listItem.querySelector('.list__like')
+  cardLike.addEventListener('click', (evt) => {
+    evt.target.classList.toggle('.list__like_active')
+  })
+
+  const imgClickHandler = (evt) => {
+    popupImgPic.src = item.link
+    popupImgText.textContent = item.name
+    togglePopupVisible(popupImg)
+  }
+
+  const cardImage = listItem.querySelector('.list__image')
+  cardImage.addEventListener('click', imgClickHandler)
+  return listItem
+}
+
+initialCards.forEach(item => {
+  insertCardItem(item)
+})
+
+const formSubmitHandlerAdd = (evt) => {
+  evt.preventDefault()
+  const item = {name: popupTitle.value, link: popupLink.value}
+  insertCardItem(item)
+  togglePopupVisible(popupAdd)
+}
+
+
+
 
 //слушатели
 showEditProfile.addEventListener('click', showPopup);
