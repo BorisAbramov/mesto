@@ -11,6 +11,21 @@ let inputJob = document.getElementById('inputJob'); //берем професс�
 
 let formElement = document.querySelector('.popup__form');
 
+//modals
+const editModal = document.querySelector('.popup_type_edit')
+const addCardModal = document.querySelector('.popup_type_add-card')
+const imageModal = document.querySelector('.popup_type_image')
+
+//open modal buttons
+const openEditModalButton= document.querySelector('.profile-info__edit')
+const openAddCardModalButton= document.querySelector('.profile__add')
+//const openImageModalButton= document.querySelector('.')
+
+//close modal buttons
+const closeEditModalButton= editModal.querySelector('.popup__close')
+const closeAddCardModalButton= addCardModal.querySelector('.popup__close')
+const closeImageModalButton= imageModal.querySelector('.popup__close')
+
 //popup добавления фоток
 let popupAdd = document.querySelector('.popup-add');
 let formElementAdd = document.querySelector('.popup-add__form');
