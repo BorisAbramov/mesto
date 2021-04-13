@@ -107,7 +107,7 @@ const formAddSubmitHandler = e => { //вставка новой карточки
 const insertCardItem = (item) => {
   const listItem = createCard(item)
   const listItemLink = listItem.querySelector('.list__image')
-  const listItemTitle = listItem.querySelector('.list__image')
+  const listItemTitle = listItem.querySelector('.list__name')
   listItemLink.src = item.link
   listItemTitle.textContent = item.name
   listItemLink.alt = item.name
@@ -116,11 +116,11 @@ const insertCardItem = (item) => {
 
 function createCard(item) {
   const listItem = listElementTemplate.cloneNode(true)
-  const cardDelete = listItem.querySelector('.list__basket')
-  cardDelete.addEventListener('click', () => listItem.remove())
+  const listItemDelete = listItem.querySelector('.list__basket')
+  listItemDelete.addEventListener('click', () => listItem.remove())
 
-  const cardLike = listItem.querySelector('.list__like')
-  cardLike.addEventListener('click', (evt) => {
+  const listItemLike = listItem.querySelector('.list__like')
+  listItemLike.addEventListener('click', (evt) => {
     evt.target.classList.toggle('.list__like_active')
   })
 
@@ -130,22 +130,22 @@ function createCard(item) {
     togglePopupVisible(popupImg)
   }
 
-  const cardImage = listItem.querySelector('.list__image')
-  cardImage.addEventListener('click', imgClickHandler)
+  const listItemImage = listItem.querySelector('.list__image')
+  listItemImage.addEventListener('click', imgClickHandler)
   return listItem
 }
 
 initialCards.forEach(item => {
   insertCardItem(item)
 })
-
+/*
 const formSubmitHandlerAdd = (evt) => {
   evt.preventDefault()
   const item = {name: popupTitle.value, link: popupLink.value}
   insertCardItem(item)
   togglePopupVisible(popupAdd)
 }
-
+*/
 
 
 
@@ -159,7 +159,8 @@ formElement.addEventListener('submit', formSubmitHandler);
 showImageAdd.addEventListener('click', showPopupAdd);
 
 popupCloseAdd.addEventListener('click', closePopupAdd);
-
+/*
 formAdd.addEventListener('submit', formAddSubmitHandler);
 
 like.addEventListener('click', likeActive);
+*/
