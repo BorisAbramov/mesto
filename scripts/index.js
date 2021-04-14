@@ -65,14 +65,22 @@ const formAddItemInputLink = document.getElementById('formAddInputLink');
 const like = document.querySelector('.list__like');
 
 //popup функции
+function toggleModalWindow(modal) {
+    modal.classList.toggle('.popup_is-opened')
+    inputName.value = profileName.textContent;
+    inputJob.value = profileJob.textContent;
+}
+/*
 function showPopup(){
     popup.classList.add('popup_is-opened');
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
 }
+
 function closePopup(){
     popup.classList.remove('popup_is-opened');
 }
+*/
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
     profileName.textContent = inputName.value;
@@ -80,12 +88,14 @@ function formSubmitHandler (evt) {
     closePopup();
 }
 //popup фотки функции
+/*
 function showPopupAdd(){
     popupAdd.classList.add('popup-add_is-opened');
 }
 function closePopupAdd(){
     popupAdd.classList.remove('popup-add_is-opened');
 }
+*/
 /*
 function insertCard(item){ //пока для первоначальной загрузки
   const listItem = listElementTemplate.cloneNode(true)
@@ -165,6 +175,7 @@ const formSubmitHandlerAdd = (evt) => {
 
 
 //слушатели
+/*
 showEditProfile.addEventListener('click', showPopup);
 
 popupClose.addEventListener('click', closePopup);
@@ -174,8 +185,14 @@ formElement.addEventListener('submit', formSubmitHandler);
 showImageAdd.addEventListener('click', showPopupAdd);
 
 popupCloseAdd.addEventListener('click', closePopupAdd);
+*/
 /*
 formAdd.addEventListener('submit', formAddSubmitHandler);
 
 like.addEventListener('click', likeActive);
 */
+openEditModalButton.addEventListener('click', () => toggleModalWindow(editModal))
+openAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal))
+
+closeEditModalButton.addEventListener('click', () => toggleModalWindow(editModal))
+closeAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal))
