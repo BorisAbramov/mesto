@@ -59,6 +59,7 @@ const initialCards = [
     }
   ];
 const listElementTemplate = document.querySelector('.list-element-template').content 
+
 const formAdd = document.querySelector('.popup-add__form');
 const formAddItemInputName = document.getElementById('formAddInputName');
 const formAddItemInputLink = document.getElementById('formAddInputLink');
@@ -66,9 +67,10 @@ const like = document.querySelector('.list__like');
 
 //popup функции
 function toggleModalWindow(modal) {
-    modal.classList.toggle('.popup_is-opened')
-    inputName.value = profileName.textContent;
-    inputJob.value = profileJob.textContent;
+
+    modal.classList.toggle('popup_is-opened')
+    // inputName.value = profileName.textContent;
+    // inputJob.value = profileJob.textContent;
 }
 /*
 function showPopup(){
@@ -85,7 +87,7 @@ function formSubmitHandler (evt) {
     evt.preventDefault(); 
     profileName.textContent = inputName.value;
     profileJob.textContent = inputJob.value;
-    closePopup();
+    toggleModalWindow(editModal);
 }
 //popup фотки функции
 /*
@@ -137,22 +139,27 @@ const insertCardItem = (item) => {
   listItemTitle.textContent = item.name
   listItemLink.alt = item.name
   list.prepend(listItem)
+
 }
 
 function createCard(item) {
   const listItem = listElementTemplate.cloneNode(true)
-  const listItemDelete = listItem.querySelector('.list__basket')
-  listItemDelete.addEventListener('click', () => listItem.remove())
+ 
+  const listItemDelete = listItem.querySelector('.list__basket')  
+  listItemDelete.addEventListener('click', function() {this.parentNode.remove()})
 
   const listItemLike = listItem.querySelector('.list__like')
   listItemLike.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('.list__like_active')
+    evt.target.classList.toggle('list__like_active')
   })
 
   const imgClickHandler = (evt) => {
+    const popupImgPic = document.querySelector('.popup_type_image img')
+    const popupImgText = document.querySelector('.popup_type_image h2')
+    
     popupImgPic.src = item.link
     popupImgText.textContent = item.name
-    togglePopupVisible(popupImg)
+    toggleModalWindow(imageModal)
   }
 
   const listItemImage = listItem.querySelector('.list__image')
@@ -179,19 +186,39 @@ const formSubmitHandlerAdd = (evt) => {
 showEditProfile.addEventListener('click', showPopup);
 
 popupClose.addEventListener('click', closePopup);
-
+*/
 formElement.addEventListener('submit', formSubmitHandler); 
-
+/*
 showImageAdd.addEventListener('click', showPopupAdd);
 
 popupCloseAdd.addEventListener('click', closePopupAdd);
-*/
+
 /*
 formAdd.addEventListener('submit', formAddSubmitHandler);
 
 like.addEventListener('click', likeActive);
 */
+
+formElementAdd.addEventListener('submit', function(ev) {
+  ev.preventDefault();
+  toggleModalWindow(addCardModal);
+  
+
+  const name = this.querySelector('#formAddInputName').value;
+  const link = this.querySelector('#formAddInputLink').value;
+
+  const item = {name, link};
+
+  insertCardItem(item);
+
+}); 
+
 openEditModalButton.addEventListener('click', () => toggleModalWindow(editModal))
+openEditModalButton.addEventListener('click', () => {
+   inputName.value = profileName.textContent;
+   inputJob.value = profileJob.textContent;
+})
+
 openAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal))
 
 closeEditModalButton.addEventListener('click', () => toggleModalWindow(editModal))
