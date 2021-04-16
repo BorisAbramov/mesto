@@ -38,8 +38,8 @@ const initialCards = [
       link: './images/worther-see-min.jpg'
     },
     {
-      name: 'Гора Эльбрус',
-      link: './images/Elbrus.jpg'
+      name: 'Будапешт',
+      link: './images/budapest-min.jpg'
     },
     {
       name: 'Озеро в Альпах',
@@ -54,8 +54,8 @@ const initialCards = [
       link: './images/krumlov-min.jpg'
     },
     {
-      name: 'Карачаево-Черкесия',
-      link: './images/karachaevo.jpg'
+      name: 'Прага, панорамный вид',
+      link: './images/Praha-min.jpg'
     }
   ];
 const listElementTemplate = document.querySelector('.list-element-template').content 

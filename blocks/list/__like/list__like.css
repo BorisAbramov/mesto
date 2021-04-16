@@ -11,6 +11,7 @@
     margin-right: 0;
     margin-left: auto;
     cursor: pointer;
+    transition: linear 1s;
 }
 .list__like:hover{
     opacity: 0.5;
