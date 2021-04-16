@@ -3,6 +3,7 @@ let popup = document.querySelector('.popup');
 
 let popupClose = document.querySelector('.popup__close');
 
+
 let profileName = document.getElementById('name'); //берем имя из профиля страницы
 let profileJob = document.getElementById('job'); //берем профессию из профиля страницы
 
@@ -30,7 +31,7 @@ const closeImageModalButton= imageModal.querySelector('.popup__close')
 let popupAdd = document.querySelector('.popup-add');
 let formElementAdd = document.querySelector('.popup-add__form');
 let showImageAdd = document.querySelector('.profile__add');
-let popupCloseAdd = document.querySelector('.popup-add__close');
+/*let popupCloseAdd = document.querySelector('.popup-add__close');*/
 const list = document.querySelector('.list');
 const initialCards = [
     {
