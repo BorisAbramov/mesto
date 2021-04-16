@@ -29,7 +29,7 @@ const closeImageModalButton= imageModal.querySelector('.popup__close')
 
 //popup добавления фоток
 let popupAdd = document.querySelector('.popup-add');
-let formElementAdd = document.querySelector('.popup-add__form');
+let formElementAdd = document.querySelector('#popup-add__form');
 let showImageAdd = document.querySelector('.profile__add');
 /*let popupCloseAdd = document.querySelector('.popup-add__close');*/
 const list = document.querySelector('.list');
@@ -61,7 +61,7 @@ const initialCards = [
   ];
 const listElementTemplate = document.querySelector('.list-element-template').content 
 
-const formAdd = document.querySelector('.popup-add__form');
+const formAdd = document.querySelector('#popup-add__form');
 const formAddItemInputName = document.getElementById('formAddInputName');
 const formAddItemInputLink = document.getElementById('formAddInputLink');
 const like = document.querySelector('.list__like');
