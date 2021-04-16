@@ -65,71 +65,16 @@ const formAddItemInputName = document.getElementById('formAddInputName');
 const formAddItemInputLink = document.getElementById('formAddInputLink');
 const like = document.querySelector('.list__like');
 
-//popup функции
 function toggleModalWindow(modal) {
-
     modal.classList.toggle('popup_is-opened')
-    // inputName.value = profileName.textContent;
-    // inputJob.value = profileJob.textContent;
-}
-/*
-function showPopup(){
-    popup.classList.add('popup_is-opened');
-    inputName.value = profileName.textContent;
-    inputJob.value = profileJob.textContent;
 }
 
-function closePopup(){
-    popup.classList.remove('popup_is-opened');
-}
-*/
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
     profileName.textContent = inputName.value;
     profileJob.textContent = inputJob.value;
     toggleModalWindow(editModal);
 }
-//popup фотки функции
-/*
-function showPopupAdd(){
-    popupAdd.classList.add('popup-add_is-opened');
-}
-function closePopupAdd(){
-    popupAdd.classList.remove('popup-add_is-opened');
-}
-*/
-/*
-function insertCard(item){ //пока для первоначальной загрузки
-  const listItem = listElementTemplate.cloneNode(true)
-  const listItemTitle = listItem.querySelector('.list__name')
-  const listItemLink = listItem.querySelector('.list__image')
-  listItemTitle.textContent = item.name
-  listItemLink.src = item.link
-  listItemLink.alt = item.name
-
-  list.prepend(listItem);
-}
-
-const card = initialCards.forEach(item => { //делаем первоначальную загрузку карточек на сайте
-  insertCard(item)
-})
-
-const formAddSubmitHandler = e => { //вставка новой карточки
-  e.preventDefault();
-  const inputValueName = formAddItemInputName.value;
-  const inputValueLink = formAddItemInputLink.value;
-  const listItem = listElementTemplate.cloneNode(true);
-  const listItemTitle = listItem.querySelector('.list__name');
-  const listItemLink = listItem.querySelector('.list__image');
-  listItemTitle.textContent = inputValueName;
-  listItemLink.src = inputValueLink;
-  listItemLink.alt = inputValueName;
-
-  list.prepend(listItem);
-
-  closePopupAdd();
-}
-*/
 
 const insertCardItem = (item) => {
   const listItem = createCard(item)
@@ -154,8 +99,8 @@ function createCard(item) {
   })
 
   const imgClickHandler = (evt) => {
-    const popupImgPic = document.querySelector('.popup_type_image img')
-    const popupImgText = document.querySelector('.popup_type_image h2')
+    const popupImgPic = document.querySelector('.popupImgPic')
+    const popupImgText = document.querySelector('.popupImgText')
     
     popupImgPic.src = item.link
     popupImgText.textContent = item.name
@@ -170,34 +115,8 @@ function createCard(item) {
 initialCards.forEach(item => {
   insertCardItem(item)
 })
-/*
-const formSubmitHandlerAdd = (evt) => {
-  evt.preventDefault()
-  const item = {name: popupTitle.value, link: popupLink.value}
-  insertCardItem(item)
-  togglePopupVisible(popupAdd)
-}
-*/
 
-
-
-//слушатели
-/*
-showEditProfile.addEventListener('click', showPopup);
-
-popupClose.addEventListener('click', closePopup);
-*/
 formElement.addEventListener('submit', formSubmitHandler); 
-/*
-showImageAdd.addEventListener('click', showPopupAdd);
-
-popupCloseAdd.addEventListener('click', closePopupAdd);
-
-/*
-formAdd.addEventListener('submit', formAddSubmitHandler);
-
-like.addEventListener('click', likeActive);
-*/
 
 formElementAdd.addEventListener('submit', function(ev) {
   ev.preventDefault();
@@ -213,8 +132,8 @@ formElementAdd.addEventListener('submit', function(ev) {
 
 }); 
 
-openEditModalButton.addEventListener('click', () => toggleModalWindow(editModal))
 openEditModalButton.addEventListener('click', () => {
+   toggleModalWindow(editModal);
    inputName.value = profileName.textContent;
    inputJob.value = profileJob.textContent;
 })
@@ -223,3 +142,4 @@ openAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCard
 
 closeEditModalButton.addEventListener('click', () => toggleModalWindow(editModal))
 closeAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal))
+closeImageModalButton.addEventListener('click', () => toggleModalWindow(imageModal))
