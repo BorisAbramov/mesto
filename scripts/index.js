@@ -69,6 +69,7 @@ function toggleModalWindow(modal) {
     modal.classList.toggle('popup_is-opened')
 }
 
+
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
     profileName.textContent = inputName.value;
@@ -86,6 +87,9 @@ const insertCardItem = (item) => {
   list.prepend(listItem)
 
 }
+function togglePopupVisible(modal) {
+  modal.classList.toggle('popup_is_visible')
+}
 
 function createCard(item) {
   const listItem = listElementTemplate.cloneNode(true)
@@ -99,12 +103,12 @@ function createCard(item) {
   })
 
   const imgClickHandler = (evt) => {
-    const popupImgPic = document.querySelector('.popupImgPic')
-    const popupImgText = document.querySelector('.popupImgText')
+    const popupImgPic = document.querySelector('.popup__imgPic')
+    const popupImgText = document.querySelector('.popup__imgText')
     
     popupImgPic.src = item.link
     popupImgText.textContent = item.name
-    toggleModalWindow(imageModal)
+    togglePopupVisible(imageModal)
   }
 
   const listItemImage = listItem.querySelector('.list__image')
@@ -142,4 +146,4 @@ openAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCard
 
 closeEditModalButton.addEventListener('click', () => toggleModalWindow(editModal))
 closeAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal))
-closeImageModalButton.addEventListener('click', () => toggleModalWindow(imageModal))
+closeImageModalButton.addEventListener('click', () => togglePopupVisible(imageModal))
