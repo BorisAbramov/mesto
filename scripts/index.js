@@ -1,16 +1,16 @@
-let showEditProfile = document.querySelector('.profile-info__edit');
-let popup = document.querySelector('.popup');
+const showEditProfile = document.querySelector('.profile-info__edit');
+const popup = document.querySelector('.popup');
 
-let popupClose = document.querySelector('.popup__close');
+const popupClose = document.querySelector('.popup__close');
 
 
-let profileName = document.getElementById('name'); //берем имя из профиля страницы
-let profileJob = document.getElementById('job'); //берем профессию из профиля страницы
+const profileName = document.getElementById('name'); //берем имя из профиля страницы
+const profileJob = document.getElementById('job'); //берем профессию из профиля страницы
 
-let inputName = document.getElementById('inputName'); //берем имя из инпут-формы
-let inputJob = document.getElementById('inputJob'); //берем профессию из инпут-формы
+const inputName = document.getElementById('inputName'); //берем имя из инпут-формы
+const inputJob = document.getElementById('inputJob'); //берем профессию из инпут-формы
 
-let formElement = document.querySelector('.popup__form');
+const formElement = document.querySelector('.popup__form');
 
 //modals
 const editModal = document.querySelector('.popup_type_edit')
@@ -20,7 +20,9 @@ const imageModal = document.querySelector('.popup_type_image')
 //open modal buttons
 const openEditModalButton= document.querySelector('.profile-info__edit')
 const openAddCardModalButton= document.querySelector('.profile__add')
-//const openImageModalButton= document.querySelector('.')
+
+//toggle
+
 
 //close modal buttons
 const closeEditModalButton= editModal.querySelector('.popup__close')
@@ -28,9 +30,9 @@ const closeAddCardModalButton= addCardModal.querySelector('.popup__close')
 const closeImageModalButton= imageModal.querySelector('.popup__close')
 
 //popup добавления фоток
-let popupAdd = document.querySelector('.popup-add');
-let formElementAdd = document.querySelector('#popup-add__form');
-let showImageAdd = document.querySelector('.profile__add');
+const popupAdd = document.querySelector('.popup-add');
+const formElementAdd = document.querySelector('#popup-add__form');
+const showImageAdd = document.querySelector('.profile__add');
 /*let popupCloseAdd = document.querySelector('.popup-add__close');*/
 const list = document.querySelector('.list');
 const initialCards = [
@@ -66,10 +68,7 @@ const formAddItemInputName = document.getElementById('formAddInputName');
 const formAddItemInputLink = document.getElementById('formAddInputLink');
 const like = document.querySelector('.list__like');
 
-function toggleModalWindow(modal) {
-    modal.classList.toggle('popup_is-opened')
-}
-
+const isOpened = '.popup_is_opened'
 
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
@@ -80,24 +79,32 @@ function formSubmitHandler (evt) {
 
 const insertCardItem = (item) => {
   const listItem = createCard(item)
-  const listItemLink = listItem.querySelector('.list__image')
-  const listItemTitle = listItem.querySelector('.list__name')
-  listItemLink.src = item.link
-  listItemTitle.textContent = item.name
-  listItemLink.alt = item.name
   list.prepend(listItem)
 
 }
+
+function toggleModalWindow(modal) {
+  modal.classList.toggle('popup_is-opened')
+}
+
 function togglePopupVisible(modal) {
   modal.classList.toggle('popup_is_visible')
 }
 
 function createCard(item) {
   const listItem = listElementTemplate.cloneNode(true)
- 
-  const listItemDelete = listItem.querySelector('.list__basket')  
-  listItemDelete.addEventListener('click', function() {this.parentNode.remove()})
+  
+  const listItemLink = listItem.querySelector('.list__image')
+  const listItemTitle = listItem.querySelector('.list__name')
+  listItemLink.src = item.link
+  listItemTitle.textContent = item.name
+  listItemLink.alt = item.name
 
+  const listItemDelete = listItem.querySelector('.list__basket')
+  const listItemDeleteList =  listItemDelete.closest('.list__element')
+  /*listItemDelete.addEventListener('click', function() {this.parentNode.remove()})*/
+  listItemDelete.addEventListener('click', (evt) => {listItemDeleteList.remove})
+  console.log(listItemDelete.closest('.list__element'))
   const listItemLike = listItem.querySelector('.list__like')
   listItemLike.addEventListener('click', (evt) => {
     evt.target.classList.toggle('list__like_active')
