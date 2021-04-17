@@ -68,13 +68,14 @@ const formAddItemInputName = document.getElementById('formAddInputName');
 const formAddItemInputLink = document.getElementById('formAddInputLink');
 const like = document.querySelector('.list__like');
 
-const isOpened = '.popup_is_opened'
+const isOpened = 'popup_is-opened';
+const isVisible = 'popup_is_visible';
 
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
     profileName.textContent = inputName.value;
     profileJob.textContent = inputJob.value;
-    toggleModalWindow(editModal);
+    toggleModalWindow(editModal, isOpened);
 }
 
 const insertCardItem = (item) => {
@@ -83,12 +84,8 @@ const insertCardItem = (item) => {
 
 }
 
-function toggleModalWindow(modal) {
-  modal.classList.toggle('popup_is-opened')
-}
-
-function togglePopupVisible(modal) {
-  modal.classList.toggle('popup_is_visible')
+function toggleModalWindow(modal, vision) {
+  modal.classList.toggle(vision)
 }
 
 function createCard(item) {
@@ -102,9 +99,7 @@ function createCard(item) {
 
   const listItemDelete = listItem.querySelector('.list__basket')
   const listItemDeleteList =  listItemDelete.closest('.list__element')
-  /*listItemDelete.addEventListener('click', function() {this.parentNode.remove()})*/
-  listItemDelete.addEventListener('click', (evt) => {listItemDeleteList.remove})
-  console.log(listItemDelete.closest('.list__element'))
+  listItemDelete.addEventListener('click', (evt) => {listItemDeleteList.remove()})
   const listItemLike = listItem.querySelector('.list__like')
   listItemLike.addEventListener('click', (evt) => {
     evt.target.classList.toggle('list__like_active')
@@ -116,7 +111,7 @@ function createCard(item) {
     
     popupImgPic.src = item.link
     popupImgText.textContent = item.name
-    togglePopupVisible(imageModal)
+    toggleModalWindow(imageModal, isVisible)
   }
 
   const listItemImage = listItem.querySelector('.list__image')
@@ -132,7 +127,7 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 formElementAdd.addEventListener('submit', function(ev) {
   ev.preventDefault();
-  toggleModalWindow(addCardModal);
+  toggleModalWindow(addCardModal, isOpened);
   
 
   const name = this.querySelector('#formAddInputName').value;
@@ -145,13 +140,13 @@ formElementAdd.addEventListener('submit', function(ev) {
 }); 
 
 openEditModalButton.addEventListener('click', () => {
-   toggleModalWindow(editModal);
+   toggleModalWindow(editModal, isOpened);
    inputName.value = profileName.textContent;
    inputJob.value = profileJob.textContent;
 })
 
-openAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal))
+openAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal, isOpened))
 
-closeEditModalButton.addEventListener('click', () => toggleModalWindow(editModal))
-closeAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal))
-closeImageModalButton.addEventListener('click', () => togglePopupVisible(imageModal))
+closeEditModalButton.addEventListener('click', () => toggleModalWindow(editModal, isOpened))
+closeAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal, isOpened))
+closeImageModalButton.addEventListener('click', () => toggleModalWindow(imageModal, isVisible))
