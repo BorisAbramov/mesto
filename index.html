@@ -35,9 +35,11 @@
       <div class="popup__content">
         <button class="popup__close" type="button" aria-label="close popup"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="form" class="popup__form">
-          <input type="text" id="inputName" name="name" class="popup__input">
-          <input type="text" id="inputJob" name="job" class="popup__input">
+        <form name="form" class="popup__form" novalidate>
+          <input type="text" id="inputName" name="name" class="popup__input" minlength="2" maxlength="40" required>
+          <span class="popup__input-error" id="inputName-error"></span>
+          <input type="text" id="inputJob" name="job" class="popup__input" minlength="2" maxlength="200" required>
+          <span class="popup__input-error" id="inputJob-error"></span>
           <button type="submit" class="popup__submit">Сохранить</button>
         </form>
       </div>
@@ -46,9 +48,11 @@
       <div class="popup__content">
         <button class="popup__close" type="button" aria-label="close popup"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form name="form-add" class="popup__form" id="popup-add__form">
-          <input type="text" id="formAddInputName" name="name" class="popup__input" value="Название">
-          <input type="text" id="formAddInputLink" name="job" class="popup__input" value="Ссылка на картинку">
+        <form name="form-add" class="popup__form" id="popup-add__form" novalidate>
+          <input type="text" id="formAddInputName" name="name" class="popup__input" value="Название" minlength="2" maxlength="30" required>
+          <span class="popup__input-error" id="formAddInputName-error"></span>
+          <input type="url" id="formAddInputLink" name="job" class="popup__input" value="Ссылка на картинку" required>
+          <span class="popup__input-error" id="email-error"></span>
           <button type="submit" class="popup__submit">Сохранить</button>
         </form>
       </div>
@@ -72,6 +76,7 @@
     </template>
   </div>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
   </body>
 </html>
 
