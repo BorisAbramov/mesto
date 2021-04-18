@@ -167,12 +167,6 @@ function closeModal() {
   document.removeEventListener('keyup', handleEsc);
 }
 
-function closeOnClick(evt) {
-  const popupOpened = document.querySelector('.popup_is-opened');
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')){
-    closeModal(popupOpened);
-  }
-}
 //----------------------------------
 function handleEsc (event){
   const activePopup = document.querySelector('.popup_is-opened');
@@ -187,9 +181,7 @@ popup.addEventListener('click', function(evt){
   }
 })
 //-----------------------
-/*
-openAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal, isOpened))
-*/
+
 openAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal))
 
 
