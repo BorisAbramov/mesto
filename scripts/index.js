@@ -69,13 +69,13 @@ const like = document.querySelector('.list__like');
 
 const isOpened = 'popup_is-opened';
 const isVisible = 'popup_is_visible';
-
+/*
 function formSubmitHandler (evt) {
     profileName.textContent = inputName.value;
     profileJob.textContent = inputJob.value;
     toggleModalWindow(editModal);
 }
-
+*/
 const insertCardItem = (item) => {
   const listItem = createCard(item)
   list.prepend(listItem)
@@ -112,21 +112,27 @@ function createCard(item) {
   }
 
   const listItemImage = listItem.querySelector('.list__image')
-  listItemImage.addEventListener('click', imgClickHandler)
+ /* listItemImage.addEventListener('click', imgClickHandler)*/
+  listItemImage.addEventListener('click', function(evt) {
+    imgClickHandler();
+    document.addEventListener('keyup', handleEsc);
+  })
   return listItem
 }
 
 initialCards.forEach(item => {
   insertCardItem(item)
 })
-
+//----отправка редактирование профиля
 formElement.addEventListener('submit', function(evt) {
   evt.preventDefault();
-  formSubmitHandler();
+  profileName.textContent = inputName.value;
+  profileJob.textContent = inputJob.value;
+  toggleModalWindow(editModal);
   document.addEventListener('keyup', handleEsc);
   formElement.reset();
 }); 
-
+//------отправка добавления карточек
 formElementAdd.addEventListener('submit', function(ev) {
   ev.preventDefault();
   toggleModalWindow(addCardModal);
@@ -149,9 +155,7 @@ openEditModalButton.addEventListener('click', () => {
    document.addEventListener('keyup', handleEsc);
 })
 
-
 //------------------------
-
 function closeModal() {
   popup.classList.remove('popup_is-opened');
   document.removeEventListener('keyup', handleEsc);
