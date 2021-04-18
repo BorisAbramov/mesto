@@ -159,7 +159,7 @@ formElementAdd.addEventListener('submit', function(ev) {
 
 
 //------------------------
-function closeModal() {
+function closeModal(popup) {
   popup.classList.remove('popup_is-opened');
   document.removeEventListener('keyup', handleEsc);
 }
