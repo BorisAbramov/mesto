@@ -71,10 +71,9 @@ const isOpened = 'popup_is-opened';
 const isVisible = 'popup_is_visible';
 
 function formSubmitHandler (evt) {
-    evt.preventDefault(); 
     profileName.textContent = inputName.value;
     profileJob.textContent = inputJob.value;
-    toggleModalWindow(editModal, isOpened);
+    toggleModalWindow(editModal);
 }
 
 const insertCardItem = (item) => {
@@ -121,7 +120,12 @@ initialCards.forEach(item => {
   insertCardItem(item)
 })
 
-formElement.addEventListener('submit', formSubmitHandler); 
+formElement.addEventListener('submit', function(evt) {
+  evt.preventDefault();
+  formSubmitHandler();
+  document.addEventListener('keyup', handleEsc);
+  formElement.reset();
+}); 
 
 formElementAdd.addEventListener('submit', function(ev) {
   ev.preventDefault();
@@ -134,6 +138,7 @@ formElementAdd.addEventListener('submit', function(ev) {
   const item = {name, link};
 
   insertCardItem(item);
+  formElementAdd.reset();
 
 }); 
 
@@ -143,21 +148,6 @@ openEditModalButton.addEventListener('click', () => {
    inputJob.value = profileJob.textContent;
    document.addEventListener('keyup', handleEsc);
 })
-/*
-function closeOnEscBtn(button) {
-  const popupOpened = document.querySelector('.popup_is-opened');
-  if (button.key === "Escape") {
-    closeModal(popupOpened);
-  }
-}
-​
-function closeOnClick(evt) {
-  const popupOpened = document.querySelector('.popup_is-opened');
-  if (evt.target.classList.contains("popup") || evt.target.classList.contains("popup__close")) {
-    closeModal(popupOpened);
-  }
-}
-*/
 
 
 //------------------------
