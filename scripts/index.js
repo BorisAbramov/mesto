@@ -1,6 +1,10 @@
 const showEditProfile = document.querySelector('.profile-info__edit');
 const popup = document.querySelector('.popup');
 
+const popupEdit = document.querySelector('.popup_type_edit');
+const popupAddCard = document.querySelector('.popup_type_add-card');
+const popupImage = document.querySelector('.popup_type_image');
+
 const popupClose = document.querySelector('.popup__close');
 
 
@@ -167,12 +171,26 @@ function handleEsc (event){
     closeModal(activePopup);
   }
 }
-popup.addEventListener('click', function(evt){
+
+popupEdit.addEventListener('click', function(evt){
   const popupOpened = document.querySelector('.popup_is-opened');
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')){
+  if (evt.target.classList.contains('popup_type_edit') || evt.target.classList.contains('popup__close')){
     closeModal(popupOpened);
   }
 })
+popupAddCard.addEventListener('click', function(evt){
+  const popupOpened = document.querySelector('.popup_is-opened');
+  if (evt.target.classList.contains('popup_type_add-card') || evt.target.classList.contains('popup__close')){
+    closeModal(popupOpened);
+  }
+})
+popupImage.addEventListener('click', function(evt){
+  const popupOpened = document.querySelector('.popup_is-opened');
+  if (evt.target.classList.contains('popup_type_image') || evt.target.classList.contains('popup__close')){
+    closeModal(popupOpened);
+  }
+})
+
 //-----------------------
 
 //----открытие редактирования профиля
