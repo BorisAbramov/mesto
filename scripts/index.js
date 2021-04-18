@@ -113,6 +113,10 @@ function createCard(item) {
 
   const listItemImage = listItem.querySelector('.list__image')
  /* listItemImage.addEventListener('click', imgClickHandler)*/
+
+
+
+ //-----открытие всплывающей картинки
   listItemImage.addEventListener('click', function(evt) {
     imgClickHandler();
     document.addEventListener('keyup', handleEsc);
@@ -126,17 +130,17 @@ initialCards.forEach(item => {
 //----отправка редактирование профиля
 formElement.addEventListener('submit', function(evt) {
   evt.preventDefault();
+  toggleModalWindow(editModal);
+
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
-  toggleModalWindow(editModal);
-  document.addEventListener('keyup', handleEsc);
+  
   formElement.reset();
 }); 
 //------отправка добавления карточек
 formElementAdd.addEventListener('submit', function(ev) {
   ev.preventDefault();
   toggleModalWindow(addCardModal);
-  document.addEventListener('keyup', handleEsc)
 
   const name = this.querySelector('#formAddInputName').value;
   const link = this.querySelector('#formAddInputLink').value;
@@ -148,12 +152,7 @@ formElementAdd.addEventListener('submit', function(ev) {
 
 }); 
 
-openEditModalButton.addEventListener('click', () => {
-   toggleModalWindow(editModal);
-   inputName.value = profileName.textContent;
-   inputJob.value = profileJob.textContent;
-   document.addEventListener('keyup', handleEsc);
-})
+
 
 //------------------------
 function closeModal() {
@@ -176,7 +175,18 @@ popup.addEventListener('click', function(evt){
 })
 //-----------------------
 
-openAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal))
+//----открытие редактирования профиля
+openEditModalButton.addEventListener('click', () => {
+  toggleModalWindow(editModal);
+  inputName.value = profileName.textContent;
+  inputJob.value = profileJob.textContent;
+  document.addEventListener('keyup', handleEsc);
+})
+//-----открытие добавления карточек
+openAddCardModalButton.addEventListener('click', () => {
+  toggleModalWindow(addCardModal);
+  document.addEventListener('keyup', handleEsc);
+})
 
 
 closeEditModalButton.addEventListener('click', () => toggleModalWindow(editModal))
