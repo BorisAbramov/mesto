@@ -33,7 +33,6 @@ const closeImageModalButton= imageModal.querySelector('.popup__close')
 const popupAdd = document.querySelector('.popup-add');
 const formElementAdd = document.querySelector('#popup-add__form');
 const showImageAdd = document.querySelector('.profile__add');
-/*let popupCloseAdd = document.querySelector('.popup-add__close');*/
 const list = document.querySelector('.list');
 const initialCards = [
     {
@@ -84,10 +83,9 @@ const insertCardItem = (item) => {
 
 }
 
-function toggleModalWindow(modal, vision) {
-  modal.classList.toggle(vision)
+function toggleModalWindow(modal) {
+  modal.classList.toggle('popup_is-opened')
 }
-
 function createCard(item) {
   const listItem = listElementTemplate.cloneNode(true)
   
@@ -111,7 +109,7 @@ function createCard(item) {
     
     popupImgPic.src = item.link
     popupImgText.textContent = item.name
-    toggleModalWindow(imageModal, isVisible)
+    toggleModalWindow(imageModal)
   }
 
   const listItemImage = listItem.querySelector('.list__image')
@@ -127,8 +125,8 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 formElementAdd.addEventListener('submit', function(ev) {
   ev.preventDefault();
-  toggleModalWindow(addCardModal, isOpened);
-  
+  toggleModalWindow(addCardModal);
+  document.addEventListener('keyup', handleEsc)
 
   const name = this.querySelector('#formAddInputName').value;
   const link = this.querySelector('#formAddInputLink').value;
@@ -140,13 +138,61 @@ formElementAdd.addEventListener('submit', function(ev) {
 }); 
 
 openEditModalButton.addEventListener('click', () => {
-   toggleModalWindow(editModal, isOpened);
+   toggleModalWindow(editModal);
    inputName.value = profileName.textContent;
    inputJob.value = profileJob.textContent;
+   document.addEventListener('keyup', handleEsc);
 })
+/*
+function closeOnEscBtn(button) {
+  const popupOpened = document.querySelector('.popup_is-opened');
+  if (button.key === "Escape") {
+    closeModal(popupOpened);
+  }
+}
+​
+function closeOnClick(evt) {
+  const popupOpened = document.querySelector('.popup_is-opened');
+  if (evt.target.classList.contains("popup") || evt.target.classList.contains("popup__close")) {
+    closeModal(popupOpened);
+  }
+}
+*/
 
+
+//------------------------
+
+function closeModal() {
+  popup.classList.remove('popup_is-opened');
+  document.removeEventListener('keyup', handleEsc);
+}
+
+function closeOnClick(evt) {
+  const popupOpened = document.querySelector('.popup_is-opened');
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')){
+    closeModal(popupOpened);
+  }
+}
+//----------------------------------
+function handleEsc (event){
+  const activePopup = document.querySelector('.popup_is-opened');
+  if (event.key === 'Esc'){
+    closeModal(activePopup);
+  }
+}
+popup.addEventListener('click', function(evt){
+  const popupOpened = document.querySelector('.popup_is-opened');
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')){
+    closeModal(popupOpened);
+  }
+})
+//-----------------------
+/*
 openAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal, isOpened))
+*/
+openAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal))
 
-closeEditModalButton.addEventListener('click', () => toggleModalWindow(editModal, isOpened))
-closeAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal, isOpened))
-closeImageModalButton.addEventListener('click', () => toggleModalWindow(imageModal, isVisible))
+
+closeEditModalButton.addEventListener('click', () => toggleModalWindow(editModal))
+closeAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal))
+closeImageModalButton.addEventListener('click', () => toggleModalWindow(imageModal))
