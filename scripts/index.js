@@ -71,23 +71,18 @@ const formAddItemInputName = document.getElementById('formAddInputName');
 const formAddItemInputLink = document.getElementById('formAddInputLink');
 const like = document.querySelector('.list__like');
 
-const isOpened = 'popup_is-opened';
-const isVisible = 'popup_is_visible';
-/*
-function formSubmitHandler (evt) {
-    profileName.textContent = inputName.value;
-    profileJob.textContent = inputJob.value;
-    toggleModalWindow(editModal);
-}
-*/
+const popupImgPic = document.querySelector('.popup__imgPic')
+const popupImgText = document.querySelector('.popup__imgText')
+
 const insertCardItem = (item) => {
   const listItem = createCard(item)
   list.prepend(listItem)
 
 }
 
-function toggleModalWindow(modal) {
-  modal.classList.toggle('popup_is-opened')
+function openPopup(modal) {
+  modal.classList.add('popup_is-opened');
+  document.addEventListener('keyup', handleEsc);
 }
 function createCard(item) {
   const listItem = listElementTemplate.cloneNode(true)
@@ -107,12 +102,9 @@ function createCard(item) {
   })
 
   const imgClickHandler = (evt) => {
-    const popupImgPic = document.querySelector('.popup__imgPic')
-    const popupImgText = document.querySelector('.popup__imgText')
-    
     popupImgPic.src = item.link
     popupImgText.textContent = item.name
-    toggleModalWindow(imageModal)
+    openPopup(imageModal)
   }
 
   const listItemImage = listItem.querySelector('.list__image')
@@ -123,7 +115,6 @@ function createCard(item) {
  //-----открытие всплывающей картинки
   listItemImage.addEventListener('click', function(evt) {
     imgClickHandler();
-    document.addEventListener('keyup', handleEsc);
   })
   return listItem
 }
@@ -134,7 +125,7 @@ initialCards.forEach(item => {
 //----отправка редактирование профиля
 formElement.addEventListener('submit', function(evt) {
   evt.preventDefault();
-  toggleModalWindow(editModal);
+  closeModal(editModal);
 
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
@@ -144,10 +135,10 @@ formElement.addEventListener('submit', function(evt) {
 //------отправка добавления карточек
 formElementAdd.addEventListener('submit', function(ev) {
   ev.preventDefault();
-  toggleModalWindow(addCardModal);
+  closeModal(addCardModal);
 
-  const name = this.querySelector('#formAddInputName').value;
-  const link = this.querySelector('#formAddInputLink').value;
+  const name = ev.target.querySelector('#formAddInputName').value;
+  const link = ev.target.querySelector('#formAddInputLink').value;
 
   const item = {name, link};
 
@@ -166,27 +157,27 @@ function closeModal(popup) {
 
 //----------------------------------
 function handleEsc (event){
-  const activePopup = document.querySelector('.popup_is-opened');
   if (event.key === 'Escape'){
+    const activePopup = document.querySelector('.popup_is-opened');
     closeModal(activePopup);
   }
 }
 
 popupEdit.addEventListener('click', function(evt){
-  const popupOpened = document.querySelector('.popup_is-opened');
   if (evt.target.classList.contains('popup_type_edit') || evt.target.classList.contains('popup__close')){
+    const popupOpened = document.querySelector('.popup_is-opened');
     closeModal(popupOpened);
   }
 })
 popupAddCard.addEventListener('click', function(evt){
-  const popupOpened = document.querySelector('.popup_is-opened');
   if (evt.target.classList.contains('popup_type_add-card') || evt.target.classList.contains('popup__close')){
+    const popupOpened = document.querySelector('.popup_is-opened');
     closeModal(popupOpened);
   }
 })
 popupImage.addEventListener('click', function(evt){
-  const popupOpened = document.querySelector('.popup_is-opened');
   if (evt.target.classList.contains('popup_type_image') || evt.target.classList.contains('popup__close')){
+    const popupOpened = document.querySelector('.popup_is-opened');
     closeModal(popupOpened);
   }
 })
@@ -195,18 +186,11 @@ popupImage.addEventListener('click', function(evt){
 
 //----открытие редактирования профиля
 openEditModalButton.addEventListener('click', () => {
-  toggleModalWindow(editModal);
+  openPopup(editModal);
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
-  document.addEventListener('keyup', handleEsc);
 })
 //-----открытие добавления карточек
 openAddCardModalButton.addEventListener('click', () => {
-  toggleModalWindow(addCardModal);
-  document.addEventListener('keyup', handleEsc);
+  openPopup(addCardModal);
 })
-
-
-closeEditModalButton.addEventListener('click', () => toggleModalWindow(editModal))
-closeAddCardModalButton.addEventListener('click', () => toggleModalWindow(addCardModal))
-closeImageModalButton.addEventListener('click', () => toggleModalWindow(imageModal))
