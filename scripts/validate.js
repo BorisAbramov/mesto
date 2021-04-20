@@ -62,26 +62,19 @@ const showInputError = (inputElement, errorMessage) => {
   };
   
   const setEventListeners = (formElement, inputSelector) => {
-    const handleFormSubmit = (event) => {
-      event.preventDefault();
-    };
-    formElement.addEventListener("submit", handleFormSubmit);
-  
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
     const buttonElement = formElement.querySelector(".popup__submit");
+    
+    toggleButtonState(inputList, buttonElement);
   
-    const inputListIterator = (inputElement) => {
-      const handleInput = () => {
+    
+  
+    inputList.forEach((inputElement) => {
+      inputElement.addEventListener('input', function () {
         checkInputValidity(formElement, inputElement);
         toggleButtonState(inputList, buttonElement);
-      };
-  
-      inputElement.addEventListener("input", handleInput);
-    };
-  
-    inputList.forEach(inputListIterator);
-  
-    toggleButtonState(inputList, buttonElement);
+      });
+    });
   };
   
   const enableValidation = ({ formSelector, inputSelector }) => {
