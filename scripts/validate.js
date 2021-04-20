@@ -77,12 +77,12 @@ const showInputError = (inputElement, errorMessage) => {
     });
   };
   
-  const enableValidation = ({ formSelector, inputSelector }) => {
+  const enableValidation = ({ formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass }) => {
     const formElements = document.querySelectorAll(formSelector);
     const formList = Array.from(formElements);
   
     formList.forEach((formElement) => {
-      setEventListeners(formElement, inputSelector);
+      setEventListeners(formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass);
     });
   };
   
