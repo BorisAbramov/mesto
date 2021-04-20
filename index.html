@@ -49,10 +49,14 @@
         <button class="popup__close" type="button" aria-label="close popup"></button>
         <h2 class="popup__title">Новое место</h2>
         <form name="form-add" class="popup__form" id="popup-add__form" novalidate>
-          <input type="text" id="formAddInputName" name="name" class="popup__input" value="Название" minlength="2" maxlength="30" required>
-          <span class="popup__error" id="formAddInputName-error"></span>
-          <input type="url" id="formAddInputLink" name="job" class="popup__input" value="Ссылка на картинку" required>
-          <span class="popup__error" id="url-error"></span>
+          <label class="popup__field" for="popup__input_type_place">
+            <input type="text" id="formAddInputName" name="place" class="popup__input popup__input_type_place" placeholder="Название" minlength="2" maxlength="30" required>
+            <span class="popup__error" id="formAddInputName-error"></span>
+          </label>
+          <label class="popup__field" for="popup__input_type_link"></label>
+            <input type="url" id="formAddInputLink" name="link" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" required>
+            <span class="popup__error" id="url-error"></span>
+          </label>
           <button type="submit" class="popup__submit">Сохранить</button>
         </form>
       </div>

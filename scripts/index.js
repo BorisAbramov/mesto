@@ -132,13 +132,19 @@ formElement.addEventListener('submit', function(evt) {
   
   formElement.reset();
 }); 
-//------отправка добавления карточек
+// ------отправка добавления карточек
 formElementAdd.addEventListener('submit', function(ev) {
   ev.preventDefault();
   closeModal(addCardModal);
 
   const name = ev.target.querySelector('#formAddInputName').value;
   const link = ev.target.querySelector('#formAddInputLink').value;
+
+  if (name === '' || link === ''){
+    const Button = addCardModal.querySelector('popup__submit')
+    Button.setAttribute("disabled", true);
+    Button.classList.add('popup__submit_inactive');
+  }
 
   const item = {name, link};
 
