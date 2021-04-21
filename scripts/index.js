@@ -139,14 +139,12 @@ formElementAdd.addEventListener('submit', function(ev) {
 
   const name = ev.target.querySelector('#formAddInputName').value;
   const link = ev.target.querySelector('#formAddInputLink').value;
+  const Button = addCardModal.querySelector('popup__submit')
 
   if (name === '' || link === ''){
-    const Button = addCardModal.querySelector('popup__submit')
+    
     Button.setAttribute("disabled", true);
     Button.classList.add('popup__submit_inactive');
-  }else {
-    Button.removeAttribute("disabled");
-    Button.classList.remove('popup__submit_inactive');
   }
 
   const item = {name, link};
