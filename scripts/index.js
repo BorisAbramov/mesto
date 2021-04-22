@@ -187,7 +187,6 @@ popupImage.addEventListener('click', function(evt){
 
 //----открытие редактирования профиля
 openEditModalButton.addEventListener('click', () => {
-  openPopup(editModal);
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
 
@@ -201,6 +200,7 @@ openEditModalButton.addEventListener('click', () => {
     Button.removeAttribute("disabled");
     Button.classList.remove('popup__submit_inactive');
   }
+  openPopup(editModal);
 })
 
 
