@@ -190,17 +190,29 @@ openEditModalButton.addEventListener('click', () => {
   openPopup(editModal);
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
+
+  const Button = editModal.querySelector('.popup__submit')
+
+  if (inputName.value === '' || inputJob.value === ''){
+    
+    Button.setAttribute("disabled", true);
+    Button.classList.add('popup__submit_inactive');
+  }else {
+    Button.removeAttribute("disabled");
+    Button.classList.remove('popup__submit_inactive');
+  }
 })
+
+
 //-----открытие добавления карточек
 openAddCardModalButton.addEventListener('click', () => {
-  openPopup(addCardModal);
   const Button = addCardModal.querySelector('.popup__submit')
   nameInput = addCardModal.querySelector('#formAddInputName');
   linkInput = addCardModal.querySelector('#formAddInputLink');
 
   if (nameInput.value === '' || link.value === ''){
-    
     Button.setAttribute("disabled", true);
     Button.classList.add('popup__submit_inactive');
   }
+  openPopup(addCardModal);
 })
