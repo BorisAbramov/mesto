@@ -139,13 +139,7 @@ formElementAdd.addEventListener('submit', function(ev) {
 
   const name = ev.target.querySelector('#formAddInputName').value;
   const link = ev.target.querySelector('#formAddInputLink').value;
-  const Button = addCardModal.querySelector('popup__submit')
-
-  if (name === '' || link === ''){
-    
-    Button.setAttribute("disabled", true);
-    Button.classList.add('popup__submit_inactive');
-  }
+  
 
   const item = {name, link};
 
@@ -200,4 +194,13 @@ openEditModalButton.addEventListener('click', () => {
 //-----открытие добавления карточек
 openAddCardModalButton.addEventListener('click', () => {
   openPopup(addCardModal);
+  const Button = addCardModal.querySelector('.popup__submit')
+  nameInput = addCardModal.querySelector('#formAddInputName');
+  linkInput = addCardModal.querySelector('#formAddInputLink');
+
+  if (nameInput.value === '' || link.value === ''){
+    
+    Button.setAttribute("disabled", true);
+    Button.classList.add('popup__submit_inactive');
+  }
 })
