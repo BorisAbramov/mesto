@@ -145,6 +145,10 @@ formElementAdd.addEventListener('submit', function(ev) {
 
   insertCardItem(item);
   formElementAdd.reset();
+  const button = addCardModal.querySelector('.popup__submit')
+  button.setAttribute("disabled", true);
+  button.classList.add('popup__submit_inactive');
+
 
 }); 
 
@@ -189,30 +193,11 @@ popupImage.addEventListener('click', function(evt){
 openEditModalButton.addEventListener('click', () => {
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
-
-  const Button = editModal.querySelector('.popup__submit')
-
-  if (inputName.value === '' || inputJob.value === ''){
-    
-    Button.setAttribute("disabled", true);
-    Button.classList.add('popup__submit_inactive');
-  }else {
-    Button.removeAttribute("disabled");
-    Button.classList.remove('popup__submit_inactive');
-  }
   openPopup(editModal);
 })
 
 
 //-----открытие добавления карточек
 openAddCardModalButton.addEventListener('click', () => {
-  const Button = addCardModal.querySelector('.popup__submit')
-  nameInput = addCardModal.querySelector('#formAddInputName');
-  linkInput = addCardModal.querySelector('#formAddInputLink');
-
-  if (nameInput.value === '' || link.value === ''){
-    Button.setAttribute("disabled", true);
-    Button.classList.add('popup__submit_inactive');
-  }
   openPopup(addCardModal);
 })
