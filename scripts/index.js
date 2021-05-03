@@ -1,3 +1,6 @@
+import{Card} from './card.js'
+
+
 const showEditProfile = document.querySelector('.profile-info__edit');
 const popup = document.querySelector('.popup');
 
@@ -84,6 +87,8 @@ function openPopup(modal) {
   modal.classList.add('popup_is-opened');
   document.addEventListener('keyup', handleEsc);
 }
+
+/*
 function createCard(item) {
   const listItem = listElementTemplate.cloneNode(true)
   
@@ -108,7 +113,7 @@ function createCard(item) {
   }
 
   const listItemImage = listItem.querySelector('.list__image')
- /* listItemImage.addEventListener('click', imgClickHandler)*/
+
 
 
 
@@ -122,6 +127,18 @@ function createCard(item) {
 initialCards.forEach(item => {
   insertCardItem(item)
 })
+*/
+
+initialCards.forEach((item) => {
+  const card = new Card(item, '.list-element-template');
+  const cardElement = card.generateCard();
+  //
+ // console.log(cardElement);
+  // Добавляем в DOM
+  document.querySelector('.list__element').prepend(cardElement);
+});
+
+
 //----отправка редактирование профиля
 formElement.addEventListener('submit', function(evt) {
   evt.preventDefault();
