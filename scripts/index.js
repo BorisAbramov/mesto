@@ -192,3 +192,8 @@ const editForm = document.querySelector('#popup-edit__form');
 
 const editFormValidator  = new FormValidator(validationConfig, editForm);
 editFormValidator.enableValidation();
+
+const addForm = document.querySelector('#popup-add__form');
+
+const addFormValidator  = new FormValidator(validationConfig, addForm);
+addFormValidator.enableValidation();
