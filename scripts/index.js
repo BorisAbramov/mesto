@@ -77,58 +77,12 @@ const like = document.querySelector('.list__like');
 const popupImgPic = document.querySelector('.popup__imgPic')
 const popupImgText = document.querySelector('.popup__imgText')
 
-const insertCardItem = (item) => {
-  const listItem = createCard(item)
-  list.prepend(listItem)
-
-}
-
 
 function openPopup(modal) {
   modal.classList.add('popup_is-opened');
   document.addEventListener('keyup', handleEsc);
 }
 
-/*
-function createCard(item) {
-  const listItem = listElementTemplate.cloneNode(true)
-  
-  const listItemLink = listItem.querySelector('.list__image')
-  const listItemTitle = listItem.querySelector('.list__name')
-  listItemLink.src = item.link
-  listItemTitle.textContent = item.name
-  listItemLink.alt = item.name
-
-  const listItemDelete = listItem.querySelector('.list__basket')
-  const listItemDeleteList =  listItemDelete.closest('.list__element')
-  listItemDelete.addEventListener('click', (evt) => {listItemDeleteList.remove()})
-  const listItemLike = listItem.querySelector('.list__like')
-  listItemLike.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('list__like_active')
-  })
-
-  const imgClickHandler = (evt) => {
-    popupImgPic.src = item.link
-    popupImgText.textContent = item.name
-    openPopup(imageModal)
-  }
-
-  const listItemImage = listItem.querySelector('.list__image')
-
-
-
-
- //-----открытие всплывающей картинки
-  listItemImage.addEventListener('click', function(evt) {
-    imgClickHandler();
-  })
-  return listItem
-}
-
-initialCards.forEach(item => {
-  insertCardItem(item)
-})
-*/
 function imgClickHandler(image, title) {
   popupImgPic.src = image
   popupImgText.textContent = title
@@ -144,8 +98,7 @@ function createCard(src, title) {
 
 initialCards.forEach((item) => {
   const cardElement = createCard(item.src, item.title);
- // document.querySelector('.list__element').prepend(cardElement);
- list.prepend(cardElement);
+  list.prepend(cardElement);
 });
 
 
@@ -160,23 +113,19 @@ formElement.addEventListener('submit', function(evt) {
   formElement.reset();
 }); 
 // ------отправка добавления карточек
+
+function addNewCard() {
+	list.prepend(createCard(formAddItemInputLink.value, formAddItemInputName.value))
+}
 formElementAdd.addEventListener('submit', function(ev) {
   ev.preventDefault();
   closeModal(addCardModal);
 
-  const title = ev.target.querySelector('#formAddInputName').value;
-  const src = ev.target.querySelector('#formAddInputLink').value;
-  
-
-  const item = {title, src};
-
-  insertCardItem(item);
+  addNewCard()
   formElementAdd.reset();
   const button = addCardModal.querySelector('.popup__submit')
   button.setAttribute("disabled", true);
   button.classList.add('popup__submit_inactive');
-
-
 }); 
 
 
