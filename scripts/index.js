@@ -1,4 +1,5 @@
-import{Card} from './card.js'
+import{Card} from './card.js';
+import{FormValidator} from './formvalidator.js';
 
 
 const showEditProfile = document.querySelector('.profile-info__edit');
@@ -177,3 +178,17 @@ openEditModalButton.addEventListener('click', () => {
 openAddCardModalButton.addEventListener('click', () => {
   openPopup(addCardModal);
 })
+//----------------------------------
+const validationConfig = {
+    formSelector: ".popup__form",
+    inputSelector: ".popup__input",
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__submit_inactive',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+};
+
+const editForm = document.querySelector('#popup-edit__form');
+
+const editFormValidator  = new FormValidator(validationConfig, editForm);
+editFormValidator.enableValidation();
