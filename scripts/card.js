@@ -1,13 +1,10 @@
-const popupElement = document.querySelector('.popup');
-const popupImage = document.querySelector('.popup__image');
-const popupCloseButton = document.querySelector('.popup__close');
-
-
 class Card {
-    constructor(data, cardSelector) {
-      this._name = data.name;
-      this._link = data.link;
+    constructor(data, cardSelector, imageModal) {
+      this._image = data.src;
+      this._alt = data.alt;
+      this._title = data.title;
       this._cardSelector = cardSelector;
+      this.imageModal = imageModal;
     }
   
     _getTemplate() {
@@ -23,28 +20,30 @@ class Card {
     generateCard() {
       this._element = this._getTemplate();
       this._setEventListeners();
-      this._element.querySelector('.list__image').src = this._link;
-      this._element.querySelector('.list__name').textContent = this._name;
+      this._element.querySelector('.list__image').src = this._image;
+      this._element.querySelector('.list__image').alt = this._alt;
+      this._element.querySelector('.list__name').textContent = this._title;
   
       return this._element;
     }
     
-    _handleOpenPopup(){
-     // popupImage.src = this._image;
-      popupElement.classList.add('popup_is-opened');
+    
+    _likeCard(){
+      this._listItemLike.classList.toggle('list__like_active')
     }
-    _handleClosePopup(){
-     // popupImage.src = '';
-      popupElement.classList.remove('popup_is-opened');
+    _removeCard(){
+      this._listItemDelete = this._element.querySelector('.list__basket')
+      this._listItemDeleteList =  this._listItemDelete.closest('.list__element')
+      this._listItemDelete.addEventListener('click', (evt) => {this._listItemDeleteList.remove()})
     }
     _setEventListeners() {
-    this._element.addEventListener('click', () => {
-      this._handleOpenPopup();
-    });
-  
-    popupCloseButton.addEventListener('click', () => {
-      this._handleClosePopup();
-    });
+      this._listItemLike = this._element.querySelector('.list__like')
+      this._listItemLike.addEventListener('click', (evt) => {
+        this._likeCard()
+      })  
+      this._element.querySelector('.list__basket').addEventListener('click', () => {
+        this._removeCard()
+      })
   } 
   }
 

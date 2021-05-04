@@ -128,13 +128,21 @@ initialCards.forEach(item => {
   insertCardItem(item)
 })
 */
+function imgClickHandler(image, title) {
+  popupImgPic.src = image
+  popupImgText.textContent = title
+  openPopup(imageModal)
+}
+
+function createCard(src, title) {
+	const card = new Card({ src, title }, '.list-element-template', imgClickHandler)
+	const cardElement = card.generateCard()
+	return cardElement
+}
+
 
 initialCards.forEach((item) => {
-  const card = new Card(item, '.list-element-template');
-  const cardElement = card.generateCard();
-  //
- // console.log(cardElement);
-  // Добавляем в DOM
+  const cardElement = createCard(item.src, item.title);
   document.querySelector('.list__element').prepend(cardElement);
 });
 
