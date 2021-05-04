@@ -4,7 +4,7 @@ class Card {
       this._alt = data.alt;
       this._title = data.title;
       this._cardSelector = cardSelector;
-      this.imageModal = imageModal;
+      this._imageModal = imageModal;
     }
   
     _getTemplate() {
@@ -44,6 +44,9 @@ class Card {
       this._element.querySelector('.list__basket').addEventListener('click', () => {
         this._removeCard()
       })
+      this._element.querySelector('.list__image').addEventListener('click', () => {
+        this._imageModal(this._image, this._title)
+      });
   } 
   }
 

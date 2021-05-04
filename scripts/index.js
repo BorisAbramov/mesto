@@ -43,28 +43,28 @@ const showImageAdd = document.querySelector('.profile__add');
 const list = document.querySelector('.list');
 const initialCards = [
     {
-      name: 'Озеро Вёртер',
-      link: './images/worther-see-min.jpg'
+      title: 'Озеро Вёртер',
+      src: './images/worther-see-min.jpg'
     },
     {
-      name: 'Будапешт',
-      link: './images/budapest-min.jpg'
+      title: 'Будапешт',
+      src: './images/budapest-min.jpg'
     },
     {
-      name: 'Озеро в Альпах',
-      link: './images/lake-alps-min.jpg'
+      title: 'Озеро в Альпах',
+      src: './images/lake-alps-min.jpg'
     },
     {
-      name: 'Стельвио',
-      link: './images/stelvio-min.jpg'
+      title: 'Стельвио',
+      src: './images/stelvio-min.jpg'
     },
     {
-      name: 'Чески Крумлов',
-      link: './images/krumlov-min.jpg'
+      title: 'Чески Крумлов',
+      src: './images/krumlov-min.jpg'
     },
     {
-      name: 'Прага, панорамный вид',
-      link: './images/Praha-min.jpg'
+      title: 'Прага, панорамный вид',
+      src: './images/Praha-min.jpg'
     }
   ];
 const listElementTemplate = document.querySelector('.list-element-template').content 
@@ -82,6 +82,7 @@ const insertCardItem = (item) => {
   list.prepend(listItem)
 
 }
+
 
 function openPopup(modal) {
   modal.classList.add('popup_is-opened');
@@ -143,7 +144,8 @@ function createCard(src, title) {
 
 initialCards.forEach((item) => {
   const cardElement = createCard(item.src, item.title);
-  document.querySelector('.list__element').prepend(cardElement);
+ // document.querySelector('.list__element').prepend(cardElement);
+ list.prepend(cardElement);
 });
 
 
@@ -162,11 +164,11 @@ formElementAdd.addEventListener('submit', function(ev) {
   ev.preventDefault();
   closeModal(addCardModal);
 
-  const name = ev.target.querySelector('#formAddInputName').value;
-  const link = ev.target.querySelector('#formAddInputLink').value;
+  const title = ev.target.querySelector('#formAddInputName').value;
+  const src = ev.target.querySelector('#formAddInputLink').value;
   
 
-  const item = {name, link};
+  const item = {title, src};
 
   insertCardItem(item);
   formElementAdd.reset();
