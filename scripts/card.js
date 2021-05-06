@@ -19,9 +19,10 @@ class Card {
   
     generateCard() {
       this._element = this._getTemplate();
+      const listImage = this._element.querySelector('.list__image');
       this._setEventListeners();
-      this._element.querySelector('.list__image').src = this._image;
-      this._element.querySelector('.list__image').alt = this._alt;
+      listImage.src = this._image;
+      listImage.alt = this._alt;
       this._element.querySelector('.list__name').textContent = this._title;
   
       return this._element;

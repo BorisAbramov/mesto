@@ -163,9 +163,6 @@ popupImage.addEventListener('click', function(evt){
     closeModal(popupOpened);
   }
 })
-
-//-----------------------
-
 //----открытие редактирования профиля
 openEditModalButton.addEventListener('click', () => {
   inputName.value = profileName.textContent;
