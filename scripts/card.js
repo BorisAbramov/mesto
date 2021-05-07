@@ -33,13 +33,11 @@ class Card {
       this._listItemLike.classList.toggle('list__like_active')
     }
     _removeCard(){
-      this._listItemDelete = this._element.querySelector('.list__basket')
-      this._listItemDeleteList =  this._listItemDelete.closest('.list__element')
-      this._listItemDelete.addEventListener('click', (evt) => {this._listItemDeleteList.remove()})
+      this._element.remove();
     }
     _setEventListeners() {
       this._listItemLike = this._element.querySelector('.list__like')
-      this._listItemLike.addEventListener('click', (evt) => {
+      this._listItemLike.addEventListener('click', () => {
         this._likeCard()
       })  
       this._element.querySelector('.list__basket').addEventListener('click', () => {

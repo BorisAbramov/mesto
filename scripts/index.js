@@ -1,16 +1,9 @@
-import{Card} from './card.js';
-import{FormValidator} from './formvalidator.js';
-
-
-const showEditProfile = document.querySelector('.profile-info__edit');
-const popup = document.querySelector('.popup');
+import{Card} from './Card.js';
+import{FormValidator} from './FormValidator.js';
 
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAddCard = document.querySelector('.popup_type_add-card');
 const popupImage = document.querySelector('.popup_type_image');
-
-const popupClose = document.querySelector('.popup__close');
-
 
 const profileName = document.getElementById('name'); //берем имя из профиля страницы
 const profileJob = document.getElementById('job'); //берем профессию из профиля страницы
@@ -32,15 +25,8 @@ const openAddCardModalButton= document.querySelector('.profile__add')
 //toggle
 
 
-//close modal buttons
-const closeEditModalButton= editModal.querySelector('.popup__close')
-const closeAddCardModalButton= addCardModal.querySelector('.popup__close')
-const closeImageModalButton= imageModal.querySelector('.popup__close')
-
 //popup добавления фоток
-const popupAdd = document.querySelector('.popup-add');
 const formElementAdd = document.querySelector('#popup-add__form');
-const showImageAdd = document.querySelector('.profile__add');
 const list = document.querySelector('.list');
 const initialCards = [
     {
@@ -68,12 +54,9 @@ const initialCards = [
       src: './images/Praha-min.jpg'
     }
   ];
-const listElementTemplate = document.querySelector('.list-element-template').content 
 
-const formAdd = document.querySelector('#popup-add__form');
 const formAddItemInputName = document.getElementById('formAddInputName');
 const formAddItemInputLink = document.getElementById('formAddInputLink');
-const like = document.querySelector('.list__like');
 
 const popupImgPic = document.querySelector('.popup__imgPic')
 const popupImgText = document.querySelector('.popup__imgText')
@@ -86,6 +69,7 @@ function openPopup(modal) {
 
 function imgClickHandler(image, title) {
   popupImgPic.src = image
+  popupImgPic.alt = title
   popupImgText.textContent = title
   openPopup(imageModal)
 }
