@@ -1,5 +1,9 @@
-import{Card} from './Card.js';
-import{FormValidator} from './FormValidator.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
+import Section from './Section.js';
 
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAddCard = document.querySelector('.popup_type_add-card');
@@ -30,28 +34,28 @@ const formElementAdd = document.querySelector('#popup-add__form');
 const list = document.querySelector('.list');
 const initialCards = [
     {
-      title: 'Озеро Вёртер',
-      src: './images/worther-see-min.jpg'
+      name: 'Озеро Вёртер',
+      link: './images/worther-see-min.jpg'
     },
     {
-      title: 'Будапешт',
-      src: './images/budapest-min.jpg'
+      name: 'Будапешт',
+      link: './images/budapest-min.jpg'
     },
     {
-      title: 'Озеро в Альпах',
-      src: './images/lake-alps-min.jpg'
+      name: 'Озеро в Альпах',
+      link: './images/lake-alps-min.jpg'
     },
     {
-      title: 'Стельвио',
-      src: './images/stelvio-min.jpg'
+      name: 'Стельвио',
+      link: './images/stelvio-min.jpg'
     },
     {
-      title: 'Чески Крумлов',
-      src: './images/krumlov-min.jpg'
+      name: 'Чески Крумлов',
+      link: './images/krumlov-min.jpg'
     },
     {
-      title: 'Прага, панорамный вид',
-      src: './images/Praha-min.jpg'
+      name: 'Прага, панорамный вид',
+      link: './images/Praha-min.jpg'
     }
   ];
 
@@ -62,103 +66,165 @@ const popupImgPic = document.querySelector('.popup__imgPic')
 const popupImgText = document.querySelector('.popup__imgText')
 
 
-function openPopup(modal) {
-  modal.classList.add('popup_is-opened');
-  document.addEventListener('keyup', handleEsc);
-}
+//------------
+//const popupWithImage = new PopupWithImage('.popup_type_image');
+//popupWithImage.setEventListeners();
+//
+//function imgClickHandler(src, title) {
+//  popupWi//thImage.open(src, title);
+//}
 
-function imgClickHandler(image, title) {
-  popupImgPic.src = image
-  popupImgPic.alt = title
-  popupImgText.textContent = title
-  openPopup(imageModal)
-}
+//------------
 
+/*
 function createCard(src, title) {
 	const card = new Card({ src, title }, '.list-element-template', imgClickHandler)
 	const cardElement = card.generateCard()
 	return cardElement
 }
-
-
+*/
+/*
 initialCards.forEach((item) => {
   const cardElement = createCard(item.src, item.title);
   list.prepend(cardElement);
 });
-
-
-//----отправка редактирование профиля
-formElement.addEventListener('submit', function(evt) {
-  evt.preventDefault();
-  closeModal(editModal);
-
-  profileName.textContent = inputName.value;
-  profileJob.textContent = inputJob.value;
-  
-  formElement.reset();
-}); 
-// ------отправка добавления карточек
-
-function addNewCard() {
-	list.prepend(createCard(formAddItemInputLink.value, formAddItemInputName.value))
-}
-formElementAdd.addEventListener('submit', function(ev) {
-  ev.preventDefault();
-  closeModal(addCardModal);
-
-  addNewCard()
-  formElementAdd.reset();
-  const button = addCardModal.querySelector('.popup__submit')
-  button.setAttribute("disabled", true);
-  button.classList.add('popup__submit_inactive');
-}); 
+*/
 
 
 
-//------------------------
-function closeModal(popup) {
-  popup.classList.remove('popup_is-opened');
-  document.removeEventListener('keyup', handleEsc);
-}
+//-------final------------------------
+const userData = {
+  name: '.profile-info__name',
+  info: '.profile-info__text'
+};
 
-//----------------------------------
-function handleEsc (event){
-  if (event.key === 'Escape'){
-    const activePopup = document.querySelector('.popup_is-opened');
-    closeModal(activePopup);
-  }
-}
+const userInfo = new UserInfo(userData);
 
-popupEdit.addEventListener('click', function(evt){
-  if (evt.target.classList.contains('popup_type_edit') || evt.target.classList.contains('popup__close')){
-    const popupOpened = document.querySelector('.popup_is-opened');
-    closeModal(popupOpened);
+const popupWithImage = new PopupWithImage('.popup_type_image');
+popupWithImage.setEventListeners();
+
+const popupWithFormEditProfile = new PopupWithForm({
+  popupSelector: '.popup_type_edit',
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data)
   }
 })
-popupAddCard.addEventListener('click', function(evt){
-  if (evt.target.classList.contains('popup_type_add-card') || evt.target.classList.contains('popup__close')){
-    const popupOpened = document.querySelector('.popup_is-opened');
-    closeModal(popupOpened);
+popupWithFormEditProfile.setEventListeners();
+
+const popupWithFormAddCard = new PopupWithForm({
+  popupSelector: '.popup_type_add-card',
+  handleFormSubmit: (data) => {
+    renderCards([data])
   }
 })
-popupImage.addEventListener('click', function(evt){
-  if (evt.target.classList.contains('popup_type_image') || evt.target.classList.contains('popup__close')){
-    const popupOpened = document.querySelector('.popup_is-opened');
-    closeModal(popupOpened);
-  }
-})
-//----открытие редактирования профиля
+popupWithFormAddCard.setEventListeners();
+
+const renderCards = data => {
+  const cardList = new Section({
+      items: data,
+      renderer: (item) => {
+        const card = new Card(item, '.list-element-template', {
+          handleCardClick: (data) => {
+            popupWithImage.open(data);
+          }
+        });
+        const cardElement = card.generateCard();
+        cardList.addItem(cardElement);
+      },
+    },
+    '.list'
+  );
+  cardList.renderItems();
+};
+
+renderCards(initialCards);
+
 openEditModalButton.addEventListener('click', () => {
-  inputName.value = profileName.textContent;
-  inputJob.value = profileJob.textContent;
-  openPopup(editModal);
+  inputName.value = userInfo.getUserInfo().name;
+  inputJob.value = userInfo.getUserInfo().info;
+  popupWithFormEditProfile.open();
+});
+
+openAddCardModalButton.addEventListener('click', () => {
+  popupWithFormAddCard.open();
+});
+
+//------------------------------------
+
+/*
+const getCard = (data) => {
+	const newCard = new Card(
+		data,
+		'.list-element-template',
+		() => popupWithImage.open(data.src, data.title)
+	)
+
+	return newCard.generateCard()
+}
+
+
+const cardList = new Section(
+	{
+		items: initialCards,
+		renderer: (item) => {
+			cardList.addItem(getCard(item))
+		}
+	}, list)
+
+  cardList.renderItems()
+
+
+// Вставляем новую карточку через попап
+const addCardPopup = new PopupWithForm({
+	popupSelector: addCardModal,
+	handleFormSubmit: (formData) => {
+		cardList.addItem(getCard({
+			title: formData['popup__input_type_place'],
+			src: formData['popup__input_type_link']
+		}))
+
+		addCardPopup.close()
+	}
 })
 
+openAddCardModalButton.addEventListener('click', () => {
+	addFormValidator.resetValidation()
+	addCardPopup.open()
+});
+
+// Редактирование профиля
+const editProfilePopup = new PopupWithForm({
+	popupSelector: profilePopup,
+	handleFormSubmit: (formData) => {
+		userInfo.setUserInfo({
+			userNameValue: formData['profile-info__name'],
+			userAboutValue: formData['profile-info__text']
+		});
+		editProfilePopup.close()
+	}
+})
+
+const userInfo = new UserInfo({
+	userNameSelector: profileName,
+	userAboutSelector: profileAbout
+})
+
+// Заполняем поля в попапе для редактирования профиля
+const getProfileInfo = () => {
+	const profileInfo = userInfo.getUserInfo()
+	nameInput.value = profileInfo.userName
+	aboutInput.value = profileInfo.userAbout
+	editFormValidator.resetValidation()
+	editProfilePopup.open()
+}
+
+openEditModalButton.addEventListener('click', getProfileInfo)
 
 //-----открытие добавления карточек
-openAddCardModalButton.addEventListener('click', () => {
-  openPopup(addCardModal);
-})
+//openAddCardModalButton.addEventListener('click', () => {
+//  openPopup(addCardModal);
+//})
+*///
 //----------------------------------
 const validationConfig = {
     formSelector: ".popup__form",
@@ -169,6 +235,11 @@ const validationConfig = {
     errorClass: 'popup__error_visible'
 };
 
+//------------------
+//previewImagePopup.setEventListeners()
+//addCardPopup.setEventListeners()
+//openEditModalButton.setEventListeners()
+//------------------
 const editForm = document.querySelector('#popup-edit__form');
 
 const editFormValidator  = new FormValidator(validationConfig, editForm);
