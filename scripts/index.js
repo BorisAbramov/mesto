@@ -115,6 +115,7 @@ const popupWithFormAdd = new PopupWithForm({
   popupSelector: '.popup_type_add-card',
   handleFormSubmit: (data) => {
     renderCards([data])
+    console.log(data, 2)
   }
 })
 function handleCardClick(data){
