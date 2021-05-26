@@ -1,0 +1,24 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "Учебный проект.\r Реализована возможность изменять имя и профессию в профиле.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BorisAbramov/mesto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BorisAbramov/mesto/issues"
+  },
+  "homepage": "https://github.com/BorisAbramov/mesto#readme",
+  "devDependencies": {
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0"
+  }
+}
