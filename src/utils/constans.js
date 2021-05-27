@@ -4,7 +4,7 @@ export const inputJob = document.getElementById('inputJob'); //берем про
 export const openEditModalButton= document.querySelector('.profile-info__edit')
 export const openAddCardModalButton= document.querySelector('.profile__add')
 
-
+import worther from '../images/worther-see-min.jpg';
 import budapest from '../images/budapest-min.jpg';
 import lakeAlps from '../images/lake-alps-min.jpg';
 import stelvio from '../images/stelvio-min.jpg';
@@ -13,8 +13,8 @@ import praha from '../images/Praha-min.jpg';
 
 export const initialCards = [
     {
-      name: 'Будапешт',
-      link: budapest
+      name: 'Озеро Вердер',
+      link: worther
     },
     {
       name: 'Будапешт',
