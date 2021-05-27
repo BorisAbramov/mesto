@@ -3,30 +3,38 @@ export const inputJob = document.getElementById('inputJob'); //берем про
 //open modal buttons
 export const openEditModalButton= document.querySelector('.profile-info__edit')
 export const openAddCardModalButton= document.querySelector('.profile__add')
+
+
+import budapest from '../images/budapest-min.jpg';
+import lakeAlps from '../images/lake-alps-min.jpg';
+import stelvio from '../images/stelvio-min.jpg';
+import krumlov from '../images/krumlov-min.jpg';
+import praha from '../images/Praha-min.jpg';
+
 export const initialCards = [
     {
-      name: 'Озеро Вёртер',
-      link: './images/worther-see-min.jpg'
+      name: 'Будапешт',
+      link: budapest
     },
     {
       name: 'Будапешт',
-      link: './images/budapest-min.jpg'
+      link: budapest
     },
     {
       name: 'Озеро в Альпах',
-      link: './images/lake-alps-min.jpg'
+      link: lakeAlps
     },
     {
       name: 'Стельвио',
-      link: './images/stelvio-min.jpg'
+      link: stelvio
     },
     {
       name: 'Чески Крумлов',
-      link: './images/krumlov-min.jpg'
+      link: krumlov
     },
     {
       name: 'Прага, панорамный вид',
-      link: './images/Praha-min.jpg'
+      link: praha
     }
   ];
 
