@@ -51,6 +51,14 @@ export default class Card {
         id: this._id
       });
     }
+
+    _showImage() {
+      this._handleCardClick({
+        name: this._name,
+        link: this._link
+      });
+    }
+    
     _handleLikeIcon() {
       if (this._elementCardLike.classList.contains('list__like_active')) {
         this._handleCardLike('DELETE', this._id, this._elementLikeCounter)
@@ -70,7 +78,7 @@ export default class Card {
         this._handleLikeIcon();
       });
       this._element.querySelector('.list__image').addEventListener('click', () => {
-        this._handleCardClick({name: this._name, link: this._link});
+        this._showImage();
       });
   } 
   }
