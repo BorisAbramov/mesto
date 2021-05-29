@@ -14,7 +14,8 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img src="<%=require('./images/profile.jpg')%>" alt="Фото-аватарка" class="profile__avatar">
+        <!--<img src="<%=require('./images/profile.jpg')%>" alt="Фото-аватарка" class="profile__avatar">-->
+        <button type="button" aria-label="profile__avatar" class="profile__avatar"></button>
         <div class="profile-info">
           <h1 class="profile-info__name" id="name">Жак-Ив Кусто</h1>
           <button class="profile-info__edit" type="button" aria-label="Edit"></button>
@@ -72,14 +73,53 @@
         <h3 class="popup__imgText">Новое место</h3>
       </div>
     </div>
+
+    <div class="popup popup_type_delete-card">
+      <div class="popup__content popup__content_type_delete-card">
+        <button type="button" aria-label="close popup" class="popup__close"></button>
+        <h3 class="popup__title popup__title_type_delete-card">Вы уверены?</h3>
+        <form novalidate action="#" name="delete-card" class="popup__form popup__form_type_delete-card" method="POST">
+          <button aria-label="submit form" class="popup__submit popup__submit_type_delete-card"
+            type="submit">Да</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_type_update-avatar">
+      <div class="popup__content popup__content_type_update-avatar">
+        <button type="button" aria-label="close popup" class="popup__close"></button>
+        <h3 class="popup__title">Обновить аватар</h3>
+        <form novalidate action="#" name="update-avatar" class="popup__form popup__form_type_update-avatar" method="POST">
+          <label class="popup__field">
+            <input id="link-input-avatar" type="url" required name="link" placeholder="Ссылка на картинку"
+              class="popup__input popup__input_type_card-link">
+            <span class="popup__input-error link-input-avatar-error"></span>
+          </label>
+          <button aria-label="submit form" class="popup__submit popup__submit_disabled"
+            type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_type_error-message">
+      <div class="popup__content popup__content_type_error-message">
+        <h3 class="popup__title popup__title_type_error-message"></h3>
+      </div>
+
+    </div>
+
+
+
+
     <template class="list-element-template">
       <li class="list__element">
-        <img src="#" alt="#" class="list__image">
+        <div class="list__place"></div>
         <button class="list__basket" type="button" aria-label="delete image"></button>
-        <div class="list__group">
           <h2 class="list__name">Озеро Вёртер</h2>
-          <button class="list__like" type="button" aria-label="Like"></button>
-        </div>
+          <button class="list__like" type="button" aria-label="Like">
+            <p class="list__likes-counter">0</p>
+          </button>
+        
       </li>
     </template>
   </div>

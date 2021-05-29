@@ -15,7 +15,7 @@
 @import url(../blocks/profile/__add-plus/profile__add-plus.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/list/list.css);
-@import url(../blocks/list/__group/list__group.css);
+@import url(../blocks/list/__place/list__place.css);
 @import url(../blocks/list/__element/list__element.css);
 @import url(../blocks/list/__image/list__image.css);
 @import url(../blocks/list/__name/list__name.css);
@@ -41,3 +41,4 @@
 @import url(../blocks/popup/__error/popup__error.css);
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
 @import url(../blocks/popup/__field/popup__field.css);
+@import url(../blocks/list/__likes-counter/list__likes-counter.css);

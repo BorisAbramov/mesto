@@ -5,7 +5,8 @@ export default class FormValidator {
         this._submitButtonSelector = data.submitButtonSelector;
         this._inputErrorClass = data.inputErrorClass;
         this._errorClass = data.errorClass;
-        this._formElement = formElement 
+        this._formElement = formElement;
+        this._inactiveButtonClass = data.inactiveButtonClass;
     }
     _showInputError(inputElement, errorMessage) {
         inputElement.classList.add(this._inputErrorClass);
@@ -45,27 +46,49 @@ export default class FormValidator {
             this._hideInputError(inputElement)
         }
     }
-    resetValidation() {
-        this._inputList.forEach(inputElement => {
-            this._hideInputError(inputElement)
-        })
-        this._disablePopupBtn()
-    }
-    _setEventListeners() {
-        this._formElement.addEventListener('submit', (event) => {
-            event.preventDefault()
+   
+    _setSubmitButtonState(isFormValid) {
+        const formButton = this._formElement.querySelector(this._submitButtonSelector);
+        if (isFormValid) {
+          formButton.removeAttribute('disabled');
+          formButton.classList.remove(this._inactiveButtonClass);
+        } else {
+          formButton.setAttribute('disabled', true);
+          formButton.classList.add(this._inactiveButtonClass);
+        }
+      }
+      _checkAllInputsValidity(inputList) {
+        const isFormValid = inputList.every((inputField) => {
+          return inputField.validity.valid;
         });
-        this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector))
-        this._buttonElement = this._formElement.querySelector(this._submitButtonSelector)
-        this._inputList.forEach(inputElement => {
-            inputElement.addEventListener('input', () => {
-                this._checkInputValidity(inputElement)
-                this._disablePopupBtn()
-            })
-        })
-        this._disablePopupBtn()
-    }
+        this._setSubmitButtonState(isFormValid);
+      }
+
+      _setEventListeners() {
+        this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        this._inputList.forEach((inputElement) => {
+          inputElement.addEventListener('input', () => {
+            this._checkInputValidity(inputElement);
+            this._checkAllInputsValidity(this._inputList);
+          });
+    
+        });
+      }
     enableValidation() {
-        this._setEventListeners()
-    }
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
+    this._setEventListeners();
+    this._formElement.addEventListener('reset', () => {
+      if (this._formElement.classList.contains('popup__form_type_edit-profile')) {
+        this._setSubmitButtonState(true);
+      } else {
+        this._setSubmitButtonState(false);
+      }
+
+      this._inputList.forEach((inputElement) => {
+        this._hideError(inputElement);
+      });
+    });
+  }
 }
