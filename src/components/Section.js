@@ -4,16 +4,10 @@ export default class Section{
 		this._renderer = renderer;
 		this._container = document.querySelector(containerSelector);
 		this._showErrorMessage = showErrorMessage;
-		//this._getItems = this._getItems.bind(this);
-		//this._getItems();
 	}
 
 	renderItems(data) {
 		data ? data.forEach(item => this._renderer(item)) : this._getItems();
-	//console.log(this)
-	//data.forEach(item => {
-	//	this._renderer(item)
-	//});
 	}
 
 	addItem(element) {
@@ -28,8 +22,7 @@ export default class Section{
 			}
 		  })
 		  .catch(err => {
-		//	this._showErrorMessage(err);
-			console.log(err)
+			this._showErrorMessage(err);
 		  })
 	  }
 }

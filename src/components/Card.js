@@ -8,7 +8,6 @@ export default class Card {
       this._id = data._id;
       this._like = data.likes.length;
       this._handleCardLike = handleCardLike;
-      //console.log(this._handleCardLike)
       this._data = data;
       this._userId = userInfo;  
       this._setEventListeners = this._setEventListeners.bind(this);
@@ -31,7 +30,6 @@ export default class Card {
       this._element.querySelector('.list__name').textContent = this._name;
       this._elementCardLike = this._element.querySelector('.list__like');
       this._elementCardDelete = this._element.querySelector('.list__basket');
-      //console.log(this._elementCardDelete)
       this._elementLikeCounter = this._element.querySelector('.list__likes-counter');
       this._elementLikeCounter.textContent = this._like;
       this._setEventListeners();
@@ -74,19 +72,14 @@ export default class Card {
     }
 
     _setEventListeners() {
-      // console.log(this)
-     //  const self = this
      this._elementCardDelete.addEventListener('click', () => {
        
        this._handleDeleteCard();
      });
-    // console.log(this._elementCardLike)
       this._elementCardLike.addEventListener('click', () => {
         this._handleLikeIcon();
       });
-     //console.log(this._element)
      this._element.querySelector('.list__place').addEventListener('click', () => {
-       console.log(this)
        this._showImage();
      });
   } 
