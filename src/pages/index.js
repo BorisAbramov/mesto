@@ -1,4 +1,9 @@
 import './index.css';
+
+//Object.prototype.forEach = function(a) {
+//  console.log(a)
+//}//
+
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -20,7 +25,7 @@ import {
   userData,
   editForm,
   addForm,
-  validationConfig,
+  setupValidation,
   popupCardDelete,
   popupEditAvatar,
   cardContainer,
@@ -38,6 +43,32 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 });
+
+const cardList = new Section({
+  api: api,
+  renderer: (item) => {
+    //console.log(item)
+    const card = new Card(item, cardTemplate, {
+      handleCardClick: (data) => {
+        popupWithImage.open(data);
+      },
+      handleCardLike: (method, id, likeCounter) => {
+        api.likeCard(method, id)
+          .then(data => {
+            likeCounter.textContent = data.likes.length;
+          }).catch(err => {
+            showErrorMessage(err);
+          })
+      }
+    }, popupWithCardDelete, userInfo.getUserInfo()._id);
+    //console.log(card)
+    const cardElement = card.generateCard();
+    cardList.addItem(cardElement);
+  },
+},
+cardContainer,
+showErrorMessage
+);
 
 const userInfo = new UserInfo(userData);
 
@@ -67,7 +98,7 @@ const popupWithFormEdit = new PopupWithForm({
     api.updateDataUser(data)
       .then(data => {
         userInfo.setUserInfo(data);
-        popupWithFormEditProfile.close();
+        popupWithFormEdit.close();
       })
       .catch(err => {
         showErrorMessage(err);
@@ -99,7 +130,7 @@ const popupWithFormAdd = new PopupWithForm({
         }, popupWithCardDelete, userInfo.getUserInfo()._id);
         const cardElement = card.generateCard();
         cardList.addItem(cardElement);
-        popupWithFormAddCard.close();
+        popupWithFormAdd.close();
       })
       .catch(err => {
         showErrorMessage(err);
@@ -131,10 +162,6 @@ const popupWithFormUpdateAvatar = new PopupWithForm({
       })
   }
 })
-
-function handleCardClick(data){
-  popupWithImage.open(data);
-}
 /*
 const renderCards = data => {
   const cardList = new Section({
@@ -152,29 +179,7 @@ const renderCards = data => {
 
 renderCards(initialCards);
 */
-const cardList = new Section({
-  api: api,
-  renderer: (item) => {
-    const card = new Card(item, cardTemplate, {
-      handleCardClick: (data) => {
-        popupWithImage.open(data);
-      },
-      handleCardLike: (method, id, likeCounter) => {
-        api.likeCard(method, id)
-          .then(data => {
-            likeCounter.textContent = data.likes.length;
-          }).catch(err => {
-            showErrorMessage(err);
-          })
-      }
-    }, popupWithCardDelete, userInfo.getUserInfo()._id);
-    const cardElement = card.generateCard();
-    cardList.addItem(cardElement);
-  },
-},
-cardContainer,
-showErrorMessage
-);
+
 
 
 
@@ -197,11 +202,11 @@ popupWithFormAdd.setEventListeners();
 popupWithCardDelete.setEventListeners();
 popupWithFormUpdateAvatar.setEventListeners();
 //----------------------------------
-const editFormValidator  = new FormValidator(validationConfig, editForm);
+const editFormValidator  = new FormValidator(setupValidation, editForm);
 editFormValidator.enableValidation();
-const addFormValidator  = new FormValidator(validationConfig, addForm);
+const addFormValidator  = new FormValidator(setupValidation, addForm);
 addFormValidator.enableValidation();
-const formUpdateAvatarValidator = new FormValidator(validationConfig, formUpdateAvatar);
+const formUpdateAvatarValidator = new FormValidator(setupValidation, formUpdateAvatar);
 formUpdateAvatarValidator.enableValidation();
 
 
@@ -222,6 +227,4 @@ api.getUserInfo()
   .catch(err => {
     showErrorMessage(err);
   })
-  .catch(err => {
-    showErrorMessage(err);
-  })
+ 

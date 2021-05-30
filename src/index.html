@@ -42,7 +42,7 @@
             <span class="popup__error" id="inputName-error"></span>
           </label>
           <label class="popup__field" for="popup__input_type_job">
-            <input type="text" id="inputJob" name="job" placeholder="Профессия" class="popup__input popup__input_type_job" minlength="2" maxlength="200" required>
+            <input type="text" id="inputJob" name="about" placeholder="Профессия" class="popup__input popup__input_type_job" minlength="2" maxlength="200" required>
             <span class="popup__error" id="inputJob-error"></span>
           </label>
           <button type="submit" class="popup__submit">Сохранить</button>
@@ -93,7 +93,7 @@
           <label class="popup__field">
             <input id="link-input-avatar" type="url" required name="link" placeholder="Ссылка на картинку"
               class="popup__input popup__input_type_card-link">
-            <span class="popup__input-error link-input-avatar-error"></span>
+            <span class="popup__input-error link-input-avatar-error" id="link-input-avatar-error"></span>
           </label>
           <button aria-label="submit form" class="popup__submit popup__submit_disabled"
             type="submit">Сохранить</button>
@@ -114,12 +114,11 @@
     <template class="list-element-template">
       <li class="list__element">
         <div class="list__place"></div>
-        <button class="list__basket" type="button" aria-label="delete image"></button>
           <h2 class="list__name">Озеро Вёртер</h2>
           <button class="list__like" type="button" aria-label="Like">
             <p class="list__likes-counter">0</p>
           </button>
-        
+          <button class="list__basket" type="button" aria-label="delete image"></button>
       </li>
     </template>
   </div>

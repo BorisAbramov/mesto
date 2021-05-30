@@ -12,6 +12,9 @@
     margin-left: auto;
     cursor: pointer;
     transition: linear 1s;
+    position: relative;
+    left: 0px;
+    top: -19px;
 }
 .list__like:hover{
     opacity: 0.5;

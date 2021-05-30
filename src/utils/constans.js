@@ -23,7 +23,7 @@ export  const userData = {
   };
 export const editForm = document.querySelector('#popup-edit__form');
 export const addForm = document.querySelector('#popup-add__form');
-export const validationConfig = {
+export const setupValidation = {
     formSelector: ".popup__form",
     inputSelector: ".popup__input",
     submitButtonSelector: '.popup__submit',
