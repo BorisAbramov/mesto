@@ -8,13 +8,14 @@
     width: 22px;
     height: 19px;
     margin: 0;
-    margin-right: 0;
+   /* margin-right: 0;*/
     margin-left: auto;
     cursor: pointer;
     transition: linear 1s;
     position: relative;
-    left: 0px;
+    /*left: 0px;*/
     top: -19px;
+    right: 20px;
 }
 .list__like:hover{
     opacity: 0.5;
