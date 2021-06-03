@@ -214,7 +214,7 @@ addFormValidator.enableValidation();
 const formUpdateAvatarValidator = new FormValidator(setupValidation, formUpdateAvatar);
 formUpdateAvatarValidator.enableValidation();
 
-
+/*
 api.getUserInfo()
   .then(data => {
     userInfo.setUserInfo({
@@ -232,4 +232,23 @@ api.getUserInfo()
   .catch(err => {
     showErrorMessage(err);
   })
- 
+*/
+let user = null;
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([ data, cards ]) => { 
+    //user = userData.data;
+    userInfo.setUserInfo({
+      name: data.name,
+      about: data.about,
+      _id: data._id
+    })
+    userInfo.setUserAvatar({
+      link: data.avatar
+    })
+    cardList.renderItems(cards)
+
+  })
+  .catch(err => {
+    showErrorMessage(err);
+  })

@@ -71,6 +71,10 @@ export default class Card {
   
     }
 
+    removeCard() {
+      this._element.remove();
+    }
+
     _setEventListeners() {
      this._elementCardDelete.addEventListener('click', () => {
        
