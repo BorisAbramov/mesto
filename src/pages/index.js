@@ -44,26 +44,31 @@ const api = new Api({
   }
 });
 
+function createCard(item) {
+  const card = new Card(item, cardTemplate, {
+    handleCardClick: (data) => {
+      popupWithImage.open(data);
+    },
+    handleCardLike: (method, id, likeCounter) => {
+      api.likeCard(method, id)
+        .then(data => {
+          likeCounter.textContent = data.likes.length;
+        }).catch(err => {
+          showErrorMessage(err);
+        })
+    }
+  }, popupWithCardDelete, userInfo.getUserInfo()._id);
+  return card.generateCard();
+}
+
 const cardList = new Section({
   api: api,
   renderer: (item) => {
     //console.log(item)
-    const card = new Card(item, cardTemplate, {
-      handleCardClick: (data) => {
-        popupWithImage.open(data);
-      },
-      handleCardLike: (method, id, likeCounter) => {
-        api.likeCard(method, id)
-          .then(data => {
-            likeCounter.textContent = data.likes.length;
-          }).catch(err => {
-            showErrorMessage(err);
-          })
-      }
-    }, popupWithCardDelete, userInfo.getUserInfo()._id);
-    //console.log(card)
-    const cardElement = card.generateCard();
-    cardList.addItem(cardElement);
+   // createCard(item)
+    //console.log(createCard(item))
+   // const cardElement = card.generateCard();
+    cardList.addItem(createCard(item));
   },
 },
 cardContainer,
