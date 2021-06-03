@@ -120,21 +120,21 @@ const popupWithFormAdd = new PopupWithForm({
     renderLoading(submitbuttonAddCard, 'Сохранение...');
     api.addNewCard(data)
       .then(data => {
-        const card = new Card(data, cardTemplate, {
-          handleCardClick: (data) => {
-            popupWithImage.open(data);
-          },
-          handleCardLike: (method, id, likeCounter) => {
-            api.likeCard(method, id)
-              .then(data => {
-                likeCounter.textContent = data.likes.length;
-              }).catch(err => {
-                showErrorMessage(err);
-              })
-          }
-        }, popupWithCardDelete, userInfo.getUserInfo()._id);
-        const cardElement = card.generateCard();
-        cardList.addItem(cardElement);
+        //const card = new Card(data, cardTemplate, {
+       //   handleCardClick: (data) => {
+        //    popupWithImage.open(data);
+        //  },
+        //  handleCardLike: (method, id, likeCounter) => {
+        //    api.likeCard(method, id)
+        //      .then(data => {
+        //        likeCounter.textContent = data.likes.length;
+        //      }).catch(err => {
+        //        showErrorMessage(err);
+        //      })
+        //  }
+       // }, popupWithCardDelete, userInfo.getUserInfo()._id);
+       // const cardElement = card.generateCard();
+        cardList.addItem(createCard(data));
         popupWithFormAdd.close();
       })
       .catch(err => {
