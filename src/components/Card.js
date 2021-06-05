@@ -1,5 +1,5 @@
 export default class Card {
-    constructor(data, cardSelector, {handleCardClick, handleCardLike}, popupWithCardDelete, userInfo) {
+    constructor(data, cardSelector, {handleCardClick, handleCardLike, handleCardDelete}, popupWithCardDelete, userInfo) {
       this._name = data.name;
       this._link = data.link;
       this._cardSelector = cardSelector;
@@ -8,6 +8,7 @@ export default class Card {
       this._id = data._id;
       this._like = data.likes.length;
       this._handleCardLike = handleCardLike;
+      this._handleCardDelete = handleCardDelete;
       this._data = data;
       this._userId = userInfo;  
       this._setEventListeners = this._setEventListeners.bind(this);
@@ -32,6 +33,7 @@ export default class Card {
       this._elementCardDelete = this._element.querySelector('.list__basket');
       this._elementLikeCounter = this._element.querySelector('.list__likes-counter');
       this._elementLikeCounter.textContent = this._like;
+      this._element.handleRemove = this._handleCardDelete;
       this._setEventListeners();
       if (!(this._data.owner._id === this._userId)) {
         this._elementCardDelete.remove();
@@ -62,22 +64,23 @@ export default class Card {
     
     _handleLikeIcon() {
       if (this._elementCardLike.classList.contains('list__like_active')) {
-        this._handleCardLike('DELETE', this._id, this._elementLikeCounter)
-        this._elementCardLike.classList.remove('list__like_active');
+        //this._handleCardLike('DELETE', this._id, this._elementLikeCounter)
+        this._handleCardLike('DELETE', this._id, (length) => {
+          this._elementCardLike.classList.remove('list__like_active');
+          this._elementLikeCounter.textContent = length;
+        })  
       } else {
-        this._handleCardLike('PUT', this._id, this._elementLikeCounter)
-        this._elementCardLike.classList.add('list__like_active');
+      //  this._handleCardLike('PUT', this._id, this._elementLikeCounter)
+        this._handleCardLike('PUT', this._id, (length) =>{
+          this._elementCardLike.classList.add('list__like_active');
+          this._elementLikeCounter.textContent = length;
+        })
       }
   
     }
 
-    removeCard() {
-      this._element.remove();
-    }
-
     _setEventListeners() {
-     this._elementCardDelete.addEventListener('click', () => {
-       
+     this._elementCardDelete.addEventListener('click', () => {     
        this._handleDeleteCard();
      });
       this._elementCardLike.addEventListener('click', () => {

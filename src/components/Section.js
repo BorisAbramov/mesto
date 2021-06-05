@@ -1,6 +1,6 @@
 export default class Section{
-    constructor({ api, renderer }, containerSelector, showErrorMessage) {
-		this._api = api;
+    constructor({ getInitialCards, renderer }, containerSelector, showErrorMessage) {
+		this._getInitialCards = getInitialCards;
 		this._renderer = renderer;
 		this._container = document.querySelector(containerSelector);
 		this._showErrorMessage = showErrorMessage;
@@ -15,7 +15,7 @@ export default class Section{
 	}
 
 	_getItems() {
-		this._api.getInitialCards()
+		this._getInitialCards()
 		  .then(data => {
 			if (data) {
 			  this.renderItems(data.reverse());

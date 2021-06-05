@@ -49,13 +49,25 @@ function createCard(item) {
     handleCardClick: (data) => {
       popupWithImage.open(data);
     },
-    handleCardLike: (method, id, likeCounter) => {
+    handleCardLike: (method, id, likeCounterFn) => {
       api.likeCard(method, id)
         .then(data => {
-          likeCounter.textContent = data.likes.length;
+          likeCounterFn(data.likes.length);
+         // likeCounter.textContent = data.likes.length;
         }).catch(err => {
           showErrorMessage(err);
         })
+    }, 
+    handleCardDelete: (id, fn) => {
+      api.deleteCard(id)
+      .then(() => {
+        fn();
+       // element.remove();
+        popupWithCardDelete.close();
+      })
+      .catch(err => {
+        showErrorMessage(err);
+      })
     }
   }, popupWithCardDelete, userInfo.getUserInfo()._id);
   return card.generateCard();
@@ -85,14 +97,20 @@ const popupWithCardDelete = new PopupWithFormDeleteCard({
     element,
     id
   }) => {
-    api.deleteCard(id)
-      .then(() => {
-        element.remove();
-        popupWithCardDelete.close();
-      })
-      .catch(err => {
-        showErrorMessage(err);
-      })
+    //console.log(element, id);
+    element.handleRemove(id, () => {
+      element.remove();
+    });
+    
+   // handleCardDelete();
+    //api.deleteCard(id)
+    //  .then(() => {
+    //    element.remove();
+    //    popupWithCardDelete.close();
+    //  })
+    //  .catch(err => {
+    //    showErrorMessage(err);
+    //  })
   }
 });
 
@@ -233,7 +251,7 @@ api.getUserInfo()
     showErrorMessage(err);
   })
 */
-let user = null;
+//let user = null;
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([ data, cards ]) => { 
