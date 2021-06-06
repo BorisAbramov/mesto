@@ -44,6 +44,17 @@ const api = new Api({
   }
 });
 
+//-----------
+
+
+
+
+//-------------
+
+
+
+
+
 function createCard(item) {
   const card = new Card(item, cardTemplate, {
     handleCardClick: (data) => {
@@ -58,23 +69,37 @@ function createCard(item) {
           showErrorMessage(err);
         })
     }, 
-    handleCardDelete: (id, fn) => {
-      api.deleteCard(id)
-      .then(() => {
-        fn();
-       // element.remove();
-        popupWithCardDelete.close();
-      })
-      .catch(err => {
-        showErrorMessage(err);
-      })
-    }
+    handleCardDelete: () => {
+     // console.log(card, 1)
+      popupWithCardDelete.open(card)
+    } 
+    // handleCardDelete: (id, fn) => {
+    //   api.deleteCard(id)
+    //   .then(() => {
+    //     fn();
+    //    // element.remove();
+    //     popupWithCardDelete.close();
+    //   })
+    //   .catch(err => {
+    //     showErrorMessage(err);
+    //   })
+    // }
   }, popupWithCardDelete, userInfo.getUserInfo()._id);
   return card.generateCard();
 }
 
 const cardList = new Section({
-  api: api,
+  getInitialCards: () => {
+    api.getInitialCards
+    .then(data => {
+      		if (data) {
+      		  this.renderItems(data.reverse());
+      		}
+      	  })
+      	  .catch(err => {
+      		this._showErrorMessage(err);
+      	  })
+  },
   renderer: (item) => {
     //console.log(item)
    // createCard(item)
@@ -93,15 +118,28 @@ const popupWithImage = new PopupWithImage(popupImageView);
 
 const popupWithCardDelete = new PopupWithFormDeleteCard({
   popupSelector: popupCardDelete,
-  handleFormSubmit: ({
-    element,
-    id
-  }) => {
-    //console.log(element, id);
-    element.handleRemove(id, () => {
-      element.remove();
-    });
-    
+  // handleFormSubmit: ({
+  //   element,
+  //   id
+  // }) => {
+  //   //console.log(element, id);
+  //   element.handleRemove(id, () => {
+  //     element.remove();
+  //   });
+  handleFormSubmit: (card) => {
+    console.log(card)
+    api.deleteCard(card.getId())
+      .then(() => {
+        card.removeCard();
+        popupWithCardDelete.close();
+      })
+      .catch(err => {
+            showErrorMessage(err);
+          })
+  }
+
+
+
    // handleCardDelete();
     //api.deleteCard(id)
     //  .then(() => {
@@ -111,7 +149,7 @@ const popupWithCardDelete = new PopupWithFormDeleteCard({
     //  .catch(err => {
     //    showErrorMessage(err);
     //  })
-  }
+  
 });
 
 const popupWithFormEdit = new PopupWithForm({
